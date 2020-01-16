@@ -1,0 +1,39 @@
+@import "./common.scss";
+
+.my-tabs {
+  position: fixed;
+  height: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-top: 1px solid #eee;
+  box-sizing: border-box;
+  padding: 10px 0;
+
+  &>li {
+    float: left;
+    width: 25%;
+    text-align: center;
+
+    &>div {
+      font-size: 14px;
+      margin-top: 2px;
+    }
+
+    &>i {
+      font-size: 24px;
+    }
+
+    &.active {
+      color: $theme;
+    }
+  }
+}
+
+.my-body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 60px;
+}
