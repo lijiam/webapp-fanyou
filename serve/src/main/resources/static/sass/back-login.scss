@@ -1,0 +1,65 @@
+@import "./common.scss";
+
+body {
+  background: url(../images/bg.jpg) no-repeat;
+  background-size: 100% 100%;
+}
+
+.login-box {
+  width: 400px;
+  height: 300px;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+
+  .login-title {
+    line-height: 50px;
+    font-size: 28px;
+    color: $theme;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .goto-link {
+    font-size: 14px;
+    margin-top: 10px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.register-box {
+  display: none;
+  width: 400px;
+  height: 350px;
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
+
+  .register-title {
+    line-height: 50px;
+    font-size: 28px;
+    color: $theme;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .goto-link {
+    font-size: 14px;
+    margin-top: 10px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

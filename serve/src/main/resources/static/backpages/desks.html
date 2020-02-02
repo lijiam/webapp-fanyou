@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>餐桌管理</title>
+  <link rel="stylesheet" href="../scripts/layui/css/layui.css">
+  <link rel="stylesheet" href="../styles/back-common.css">
+</head>
+
+<body>
+  <table id="demo" lay-filter="test"></table>
+
+  <script src="../scripts/jquery.v1.7.2.js"></script>
+  <script src="../scripts/layui/layui.js"></script>
+  <script src="../scripts/common_utils.js"></script>
+  <script>
+    var mytable = null;
+    layui.use('table', function () {
+      var table = layui.table;
+
+      //第一个实例
+      mytable = table.render({
+        elem: '#demo',
+        url: '/api/back/getAllDesks', //数据接口
+        parseData: function (res) {
+          return {
+            code: '0',
+            msg: '成功',
+            count: res.length,
+            data: res
+          }
+        },
+        limit: 20,
+        page: true, //开启分页
+        cols: [[ //表头
+          { field: 'id', title: '餐桌编号', sort: true, fixed: 'left', width: 120, align: 'center', style: 'text-align:center' },
+          { field: 'number', title: '餐桌座位数', edit: 'text', sort: true },
+          { field: 'desk_type', title: '餐桌状态代码', sort: true, edit: 'text' },
+          { field: 'desk_type_name', sort: true, title: '餐桌状态' },
+          { field: 'start_time', sort: true, title: '开始用餐时间' },
+          { field: 'times', title: '已用餐时间', sort: true }
+        ]],
+        even: true,
+        skin: 'nob'
+      });
+
+      //监听单元格编辑
+      table.on('edit(test)', function (obj) {
+        Utils.doAjax('/api/back/updateDesk', obj.data, function (tag) {
+          if (tag) {
+            mytable.reload({ elem: '#demo' });
+            layer.msg('更新成功')
+          } else layer.msg('更新失败')
+        })
+      });
+    });
+  </script>
+</body>
+
+</html>

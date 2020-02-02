@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>饭友后台管理系统</title>
+  <link rel="stylesheet" href="../scripts/layui/css/layui.css">
+  <link rel="stylesheet" href="../styles/reset.css">
+</head>
+
+<body class="layui-layout-body">
+  <div class="layui-layout layui-layout-admin">
+    <!-- 头部区域 -->
+    <div class="layui-header">
+      <div class="layui-logo fanyou-theme" style="font-size: 20px;">饭友后台管理系统</div>
+      <ul class="layui-nav layui-layout-right">
+        <li class="layui-nav-item">
+          <a href="javascript:;">
+            <img src="http://t.cn/RCzsdCq" class="layui-nav-img" style="position: relative;top: 10px;"><span
+              id="usertype">超级管理员</span>
+          </a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:$('#bodyContainer').attr('src','./basic-data.html')">基本资料</a></dd>
+            <dd><a href="javascript:$('#bodyContainer').attr('src','./setting.html')">设置</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item"><a href="javascript:doExit();">退出登录</a></li>
+      </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black">
+      <div class="layui-side-scroll">
+        <!-- 左侧导航区域 -->
+        <ul class="layui-nav layui-nav-tree" lay-filter="test" id="navs">
+          <!-- <li class="layui-nav-item layui-nav-itemed">
+            <a class="" href="javascript:;">两级菜单</a>
+            <dl class="layui-nav-child">
+              <dd><a href="javascript:;">子菜单</a></dd>
+            </dl>
+          </li> -->
+          <!-- <li class="layui-nav-item layui-this"><a
+              href="javascript:$('#bodyContainer').attr('src','./user.html')">用户管理</a></li>
+          <li class="layui-nav-item"><a href="javascript:$('#bodyContainer').attr('src','./user-power.html')">授权管理</a>
+          <li class="layui-nav-item"><a href="javascript:$('#bodyContainer').attr('src','./user-power.html')">菜单管理</a>
+          <li class="layui-nav-item"><a href="javascript:$('#bodyContainer').attr('src','./user-power.html')">餐桌管理</a>
+          <li class="layui-nav-item"><a href="javascript:$('#bodyContainer').attr('src','./user-power.html')">订单管理</a>
+          <li class="layui-nav-item"><a href="javascript:$('#bodyContainer').attr('src','./user-power.html')">库存管理</a>
+          <li class="layui-nav-item"><a href="javascript:$('#bodyContainer').attr('src','./user-power.html')">店铺管理</a>
+          <li class="layui-nav-item"><a href="javascript:$('#bodyContainer').attr('src','./user-power.html')">统计报表</a>
+          <li class="layui-nav-item"><a href="javascript:$('#bodyContainer').attr('src','./user-power.html')">安全中心</a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+    <!-- 中间内容区域 -->
+    <div class="layui-body">
+      <iframe id="bodyContainer" src="./user.html" frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+    <!-- 底部说明区域 -->
+    <div class="layui-footer">
+      © fanyou.com - 所有权归饭友所有
+    </div>
+  </div>
+
+  <script src="../scripts/jquery.v1.7.2.js"></script>
+  <script src="../scripts/layui/layui.js"></script>
+  <script>
+    // 页面初始化时的逻辑，如果没有登录就去登录
+    var backuser = localStorage.getItem('backuser');
+    if (!backuser) location.href = '/back/login';
+    else {
+      var user = JSON.parse(backuser);
+      $("#usertype").html(user.name);
+      var str = '';
+      if (user.user_type === '1') {
+        str += '<li class="layui-nav-item layui-this"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./user.html\')">用户管理</a></li>' +
+          '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./user-power.html\')">授权管理</a></li>' +
+          '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./foods.html\')">菜单管理</a></li>' +
+          '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./desks.html\')">餐桌管理</a></li>' +
+          '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./orders.html\')">订单管理</a></li>' +
+          '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./stocks.html\')">库存管理</a></li>' +
+          '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./stores.html\')">店铺管理</a></li>' +
+          '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./store-check.html\')">加盟管理</a></li>' +
+          '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./total.html\')">统计报表</a></li>';
+      } else if (user.user_type === '2') {
+        str += '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./foods.html\')">菜单管理</a></li>' +
+          '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./desks.html\')">餐桌管理</a></li>' +
+          '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./orders.html\')">订单管理</a></li>' +
+          '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./stocks.html\')">库存管理</a></li>' +
+          '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./total.html\')">统计报表</a></li>';
+      } else if (user.user_type === '3') {
+        str += '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./desks.html\')">餐桌管理</a></li>' +
+          '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./orders.html\')">订单管理</a></li>';
+      }
+      $("#navs").html(str);
+    }
+
+    layui.use('element', function () {
+      var element = layui.element;
+    });
+
+    function doExit() {
+      localStorage.removeItem('backuser');
+      location.href = '/back/login';
+    }
+  </script>
+</body>
+
+</html>

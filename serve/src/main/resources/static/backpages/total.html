@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>加盟管理</title>
+  <!-- <link rel="stylesheet" href="../scripts/layui/css/layui.css"> -->
+  <link rel="stylesheet" href="../styles/back-common.css">
+</head>
+
+<body>
+  <div class="echarts-box">
+    <div class="box-item" id="chart1"></div>
+    <div class="box-item" id="chart2"></div>
+    <div class="box-item" id="chart3"></div>
+  </div>
+
+  <script src="../scripts/jquery.v1.7.2.js"></script>
+  <script src="../scripts/echarts.min.4.1.0.js"></script>
+  <!-- <script src="../scripts/layui/layui.js"></script> -->
+  <script src="../scripts/common_utils.js"></script>
+
+  <script>
+    $(function () {
+      var chart1 = echarts.init(document.getElementById("chart1"));
+      var chart2 = echarts.init(document.getElementById("chart2"));
+      var chart3 = echarts.init(document.getElementById("chart3"));
+
+      var option1 = {
+        color: ["#538FF0"],
+        title: {
+          show: true,
+          text: '月营业总额统计图',
+          left: 'center',
+          bottom: 0
+        },
+        tooltip: {
+          formatter: '{b}：{c}万元'
+        },
+        xAxis: {
+          type: 'category',
+          axisLine: {
+            lineStyle: {
+              color: '#666'
+            }
+          },
+          axisLabel: {
+            color: '#333'
+          },
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          },
+          splitLine: {
+            lineStyle: {
+              type: 'dashed'
+            }
+          }
+        },
+        series: [{
+          data: [120, 200, 150, 80, 70, 110, 130],
+          type: 'bar'
+        }]
+      }
+
+      var option2 = {
+        color: ['#448EF7', '#61BF67'],
+        title: {
+          text: '客流量和支付笔数随着时间变化的趋势图',
+          left: 'center',
+          bottom: 0
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          top: 10,
+          data: ['客流量', '支付笔数']
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          },
+          splitLine: {
+            lineStyle: {
+              type: 'dashed'
+            }
+          }
+        },
+        series: [
+          {
+            name: '客流量',
+            type: 'line',
+            smooth: true,
+            data: [120, 132, 101, 134, 90, 230, 210]
+          },
+          {
+            name: '支付笔数',
+            type: 'line',
+            smooth: true,
+            data: [220, 182, 191, 234, 290, 330, 310]
+          }
+        ]
+      };
+
+      var option3 = {
+        color: ['#448EF7', '#61BF67'],
+        title: {
+          text: '各菜品销量统计图',
+          left: 'center',
+          bottom: 0
+        },
+        tooltip: {
+          trigger: 'axis',
+          formatter: '{b}：{c}'
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        },
+        yAxis: {
+          type: 'value',
+          axisLine: {
+            show: false
+          },
+          axisTick: {
+            show: false
+          },
+          splitLine: {
+            lineStyle: {
+              type: 'dashed'
+            }
+          }
+        },
+        series: [
+          {
+            name: '各菜品销量',
+            type: 'line',
+            data: [120, 132, 101, 134, 90, 230, 210]
+          }
+        ]
+      };
+
+      chart1.setOption(option1);
+      chart2.setOption(option2);
+      chart3.setOption(option3);
+    })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+@import "./common.scss";
+
+.layui-nav-bar,
+.layui-nav-tree .layui-this>a,
+.layui-nav-tree .layui-this>a:hover,
+.layui-nav-tree .layui-nav-bar,
+.layui-nav-child dd.layui-this,
+.layui-nav .layui-nav-child dd.layui-this a,
+.layui-nav .layui-this:after,
+.layui-form-select dl dd.layui-this {
+  background-color: $theme;
+}
+
+.layui-btn-primary:hover {
+  border-color: $theme;
+}
+
+.fanyou-theme {
+  color: $theme !important;
+}
+
+.fanyou-bg-theme {
+  background-color: $theme !important;
+}

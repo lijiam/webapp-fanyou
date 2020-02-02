@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>库存管理</title>
+  <link rel="stylesheet" href="../scripts/layui/css/layui.css">
+  <link rel="stylesheet" href="../styles/back-common.css">
+</head>
+
+<body>
+  <table id="demo" lay-filter="test"></table>
+
+  <script src="../scripts/jquery.v1.7.2.js"></script>
+  <script src="../scripts/layui/layui.js"></script>
+  <script src="../scripts/common_utils.js"></script>
+  <script>
+    var mytable = null;
+    layui.use('table', function () {
+      var table = layui.table;
+
+      //第一个实例
+      mytable = table.render({
+        elem: '#demo',
+        url: '/api/back/getAllStocks', //数据接口
+        parseData: function (res) {
+          return {
+            code: '0',
+            msg: '成功',
+            count: res.length,
+            data: res
+          }
+        },
+        limit: 20,
+        page: true, //开启分页
+        cols: [[ //表头
+          { field: 'id', title: '材料编号', sort: true, fixed: 'left', width: 120, align: 'center', style: 'text-align:center' },
+          { field: 'name', title: '材料名称', edit: 'text' },
+          { field: 'number', title: '库存数量', sort: true, edit: 'text' },
+          { field: 'dofood_id', title: '供应菜品编号', sort: true },
+          { field: 'dofood_name', title: '供应菜品名称', sort: true },
+          { field: 'is_in', title: '是否进货', sort: true, edit: 'text' },
+        ]],
+        even: true,
+        skin: 'nob'
+      });
+
+      //监听单元格编辑
+      table.on('edit(test)', function (obj) {
+        Utils.doAjax('/api/back/updateStock', obj.data, function (tag) {
+          if (tag) {
+            // mytable.reload({ elem: '#demo' });
+            layer.msg('更新成功')
+          } else layer.msg('更新失败')
+        })
+      });
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>饭友后台管理系统</title>
+  <link rel="stylesheet" href="../scripts/layui/css/layui.css">
+  <link rel="stylesheet" href="../styles/reset.css">
+  <link rel="stylesheet" href="../styles/back-login.css">
+</head>
+
+<body>
+  <div class="login-box" id="loginBox">
+    <div class="login-title">登&nbsp;&nbsp;录</div>
+    <form class="layui-form" action="">
+      <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-block">
+          <input type="text" name="name" required lay-verify="required" placeholder="请输入用户名" autocomplete="off"
+            class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-block">
+          <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off"
+            class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">管理员类型</label>
+        <div class="layui-input-block">
+          <select name="user_type" lay-verify="required">
+            <option value=""></option>
+            <option value="1">一级管理员</option>
+            <option value="2">二级管理员</option>
+            <option value="3">三级管理员</option>
+            <option value="4">安全员</option>
+          </select>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo">登录</button>
+          <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+      </div>
+    </form>
+    <a href="javascript:$('#registerBox').show();$('#loginBox').hide();" class="goto-link">没有账号？点击注册</a>
+  </div>
+
+  <div class="register-box" id="registerBox">
+    <div class="register-title">注&nbsp;&nbsp;册</div>
+    <form class="layui-form" action="">
+      <div class="layui-form-item">
+        <label class="layui-form-label">用户名</label>
+        <div class="layui-input-block">
+          <input type="text" name="name" required lay-verify="required" placeholder="请输入用户名" autocomplete="off"
+            class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-block">
+          <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off"
+            class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">确认密码</label>
+        <div class="layui-input-block">
+          <input type="password" name="password2" required lay-verify="required" placeholder="请再次输入密码"
+            autocomplete="off" class="layui-input">
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <label class="layui-form-label">管理员类型</label>
+        <div class="layui-input-block">
+          <select name="user_type" lay-verify="required">
+            <option value=""></option>
+            <option value="1">一级管理员</option>
+            <option value="2">二级管理员</option>
+            <option value="3">三级管理员</option>
+            <option value="4">安全员</option>
+          </select>
+        </div>
+      </div>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn layui-btn-normal" lay-submit lay-filter="formDemo2">注册</button>
+          <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+      </div>
+    </form>
+    <a href="javascript:$('#registerBox').hide();$('#loginBox').show();" class="goto-link">已有账号？点击注册</a>
+  </div>
+
+  <script src="../scripts/jquery.v1.7.2.js"></script>
+  <script src="../scripts/common_utils.js"></script>
+  <script src="../scripts/layui/layui.js"></script>
+  <script>
+    var backuser = localStorage.getItem('backuser');
+    if (backuser) location.href = '/back';
+
+    layui.use('form', function () {
+      var form = layui.form;
+
+      //监听登录
+      form.on('submit(formDemo)', function (data) {
+        Utils.doAjax('/api/user/login', data.field, function (res) {
+          if (res.code === '1') {
+            layer.msg('登录成功', {
+              time: 1500, end: function () {
+                localStorage.setItem('backuser', JSON.stringify(res.user));
+                location.href = '/back';
+              }
+            });
+          } else {
+            layer.msg('用户不存在或密码错误');
+          }
+        })
+        return false;
+      });
+
+      //监听注册
+      form.on('submit(formDemo2)', function (data) {
+        if (data.field.password != data.field.password2) {
+          layer.msg('两次密码不一样，请重新输入');
+          return false;
+        }
+        Utils.doAjax('/api/user/register', data.field, function (res) {
+          layer.msg(res.msg, {
+            time: 1500, end: function () {
+              if (res.code === '1') {
+                $('#registerBox').hide();
+                $('#loginBox').show();
+              }
+            }
+          })
+        })
+        return false;
+      });
+    });
+  </script>
+</body>
+
+</html>

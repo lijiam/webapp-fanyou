@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>加盟管理</title>
+  <link rel="stylesheet" href="../scripts/layui/css/layui.css">
+  <link rel="stylesheet" href="../styles/back-common.css">
+</head>
+
+<body>
+  <table id="demo" lay-filter="test"></table>
+
+  <script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="agree">同意</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="refuse">拒绝</a>
+  </script>
+
+  <script src="../scripts/jquery.v1.7.2.js"></script>
+  <script src="../scripts/layui/layui.js"></script>
+  <script src="../scripts/common_utils.js"></script>
+  <script>
+    var mytable = null;
+    layui.use('table', function () {
+      var table = layui.table;
+
+      //第一个实例
+      mytable = table.render({
+        elem: '#demo',
+        url: '/api/back/getNocheckStores', //数据接口
+        parseData: function (res) {
+          return {
+            code: '0',
+            msg: '成功',
+            count: res.length,
+            data: res
+          }
+        },
+        limit: 20,
+        page: true, //开启分页
+        cols: [[ //表头
+          { field: 'id', title: '申请加盟编号', sort: true, fixed: 'left', width: 140, align: 'center', style: 'text-align:center' },
+          { field: 'apply_status', title: '加盟审核状态', sort: true, fixed: 'left', width: 140, align: 'center', style: 'text-align:center' },
+          { field: 'apply_name', title: '申请人姓名' },
+          { field: 'apply_sex', title: '申请人性别', sort: true },
+          { field: 'apply_phone', title: '申请人联系方式' },
+          { field: 'apply_address', title: '申请人联系地址' },
+          { field: 'apply_city', title: '加盟区域意向' },
+          { fixed: 'right', title: '操作', toolbar: '#barDemo', width: 120 }
+        ]],
+        even: true,
+        skin: 'nob'
+      });
+
+      //监听行工具事件
+      table.on('tool(test)', function (obj) {
+        var data = obj.data;
+        if (obj.event === 'agree') {
+          layer.confirm('确认同意加盟？', function (index) {
+            Utils.doAjax('/api/back/updateStoreCheck', { id: data.id, is_check: '1' }, function (tag) {
+              if (tag) {
+                mytable.reload({ elem: '#demo' });
+                layer.msg('加盟成功，请前往店铺管理完善信息')
+              } else layer.msg('加盟失败')
+            })
+          });
+        } else if (obj.event === 'refuse') {
+          layer.confirm('确认拒绝加盟？', function (index) {
+            Utils.doAjax('/api/back/updateStoreCheck', { id: data.id, is_check: '0' }, function (tag) {
+              if (tag) {
+                mytable.reload({ elem: '#demo' });
+                layer.msg('已拒绝加盟')
+              } else layer.msg('拒绝加盟失败')
+            })
+          });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

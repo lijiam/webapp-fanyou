@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webapp.fanyou.mapper.BackMapper">
+    <select id="getAllUsers" resultType="com.webapp.fanyou.bean.User">
+        select t1.*, t2.name user_type_name from user t1, wd_dm t2 where t1.user_type = t2.id and t2.type_id = 'user_type'
+    </select>
+
+    <update id="updateUser" parameterType="java.util.Map">
+        update user set name = #{name}, phone = #{phone}, password = #{password}, sex = #{sex}, user_type = #{user_type} where id = #{id}
+    </update>
+
+    <select id="getAllFoods" resultType="com.webapp.fanyou.bean.Food">
+    SELECT
+	t1.*,
+	ifnull( t2.NAME, '未知' ) food_type_name
+    FROM
+	food t1
+	LEFT JOIN wd_dm t2 ON t1.food_type = t2.id
+	AND t2.type_id = 'food_type'
+	order by t1.id
+    </select>
+
+    <update id="updateFood" parameterType="java.util.Map">
+        update food set name = #{name}, price = #{price}, food_type = #{food_type} where id = #{id}
+    </update>
+
+    <select id="getAllDesks" resultType="com.webapp.fanyou.bean.Desk">
+        SELECT
+	t1.*,
+	ifnull( t2.NAME, '未知' ) desk_type_name,
+	case when t1.desk_type = '1' then t1.starttime else '-' end start_time,
+CASE
+	WHEN t1.desk_type = '1' THEN
+	CONCAT( TIMESTAMPDIFF( MINUTE, starttime, now() ), '分钟' ) ELSE '-'
+	END times
+FROM
+	desk t1
+	LEFT JOIN wd_dm t2 ON t1.desk_type = t2.id
+	AND t2.type_id = 'desk_type'
+ORDER BY
+t1.id
+    </select>
+
+    <update id="updateDesk" parameterType="java.util.Map">
+        update desk set number = #{number}, desk_type = #{desk_type} where id = #{id}
+    </update>
+
+    <select id="getAllStocks" resultType="com.webapp.fanyou.bean.Stock">
+        select t1.*, t2.name dofood_name from stock t1, food t2 where t1.dofood_id = t2.id order by t1.id
+    </select>
+
+    <update id="updateStock" parameterType="java.util.Map">
+        update stock set number = #{number}, name = #{name}, is_in = #{is_in} where id = #{id}
+    </update>
+
+    <select id="getAllStores" resultType="com.webapp.fanyou.bean.Store">
+        select * from store where is_check = '1' order by update_time desc
+    </select>
+
+    <update id="updateStore" parameterType="java.util.Map">
+        update store set address = #{address}, name = #{name}, y_money = #{y_money}, phone = #{phone}, update_time = now() where id = #{id}
+    </update>
+
+    <select id="getNocheckStores" resultType="com.webapp.fanyou.bean.Store">
+        select *, case when is_check = '-1' then '未审核' when is_check = '0' then '已审核但已拒绝' end apply_status from store where is_check in ('-1', '0') order by check_time desc
+    </select>
+
+    <update id="updateStoreCheck" parameterType="java.util.Map">
+        update store set is_check = #{is_check}, check_time = now() where id = #{id}
+    </update>
+    
+    <select id="getAllOrders" resultType="com.webapp.fanyou.bean.Order">
+        select t1.*, t2.name order_type_name, t3.name user_name from orders t1, wd_dm t2, user t3 where t1.type = t2.id and t1.user_id = t3.id and t2.type_id = 'order_type'
+    </select>
+
+    <select id="getOrderById" resultType="com.webapp.fanyou.bean.OrderDetail">
+        select t1.*, t2.`name` food_name, t2.price food_price from order_detail t1, food t2 where t1.id = #{id} and t1.food_id = t2.id
+    </select>
+
+    <update id="updateOrderType" parameterType="java.util.Map">
+        update orders set type = #{type} where id = #{id}
+    </update>
+</mapper>
