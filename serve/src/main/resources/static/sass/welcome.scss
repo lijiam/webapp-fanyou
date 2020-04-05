@@ -1,0 +1,86 @@
+@import './common.scss';
+
+.login-bg {
+    width: 100%;
+    height: 100%;
+    background: url(../images/bg.jpg) no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    text-align: center;
+
+    .title {
+        font-size: 24px;
+        margin-top: 20px;
+        padding-left: 20px;
+        margin-bottom: 70%;
+        text-align: left;
+        font-weight: 700;
+        color: #333;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.register-wrapper {
+    display: none;
+
+    &>h1 {
+        font-size: 24px;
+        margin-top: 100px;
+        margin-bottom: 20%;
+        font-weight: 700;
+        color: #333;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .my-form {
+        background: transparent;
+    }
+
+    .right-btn {
+        float: right;
+        margin-top: 11px;
+        margin-right: 11px;
+    }
+
+    .left {
+        float: left;
+        margin-top: 20px;
+        margin-left: 20px;
+    }
+}
+
+.login-wrapper {
+    display: none;
+
+    &>h1 {
+        font-size: 24px;
+        margin-top: 100px;
+        margin-bottom: 30%;
+        font-weight: 700;
+        color: #333;
+        text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .my-form {
+        background: transparent;
+    }
+}
+
+.mui-input-row .mui-switch {
+    float: left;
+}
+
+.mui-switch.mui-active:before {
+    right: auto;
+    left: 15px;
+    content: '男';
+    color: #fff;
+}
+
+.mui-switch:before {
+    top: 5px;
+    right: 11px;
+    content: '女';
+    text-transform: uppercase;
+    color: #999;
+}

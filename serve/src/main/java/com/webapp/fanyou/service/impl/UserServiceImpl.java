@@ -45,4 +45,10 @@ public class UserServiceImpl implements UserService {
     public Boolean updateLoginTime(String id) {
         return userMapper.updateLoginTime(id) > 0;
     }
+
+    @Override
+    public int getMaxUserId() {
+        return userMapper.getMaxUserId();
+    }
+
 }

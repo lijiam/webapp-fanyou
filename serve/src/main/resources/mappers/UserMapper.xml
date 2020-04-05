@@ -16,4 +16,7 @@
     <update id="updateLoginTime">
         update user set login_time = now() where id = #{id}
     </update>
+    <select id="getMaxUserId" resultType="java.lang.Integer">
+        select count(1) from user where user_type = '0'
+    </select>
 </mapper>

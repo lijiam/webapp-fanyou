@@ -83,15 +83,18 @@
           '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./stores.html\')">店铺管理</a></li>' +
           '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./store-check.html\')">加盟管理</a></li>' +
           '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./total.html\')">统计报表</a></li>';
+        $('#bodyContainer').attr('src','./user.html');
       } else if (user.user_type === '2') {
-        str += '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./foods.html\')">菜单管理</a></li>' +
+        str += '<li class="layui-nav-item layui-this"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./foods.html\')">菜单管理</a></li>' +
           '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./desks.html\')">餐桌管理</a></li>' +
           '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./orders.html\')">订单管理</a></li>' +
           '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./stocks.html\')">库存管理</a></li>' +
           '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./total.html\')">统计报表</a></li>';
+        $('#bodyContainer').attr('src','./foods.html');
       } else if (user.user_type === '3') {
-        str += '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./desks.html\')">餐桌管理</a></li>' +
+        str += '<li class="layui-nav-item layui-this"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./desks.html\')">餐桌管理</a></li>' +
           '<li class="layui-nav-item"><a href="javascript:$(\'#bodyContainer\').attr(\'src\',\'./orders.html\')">订单管理</a></li>';
+        $('#bodyContainer').attr('src','./desks.html');
       }
       $("#navs").html(str);
     }

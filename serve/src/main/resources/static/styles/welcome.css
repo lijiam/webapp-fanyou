@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* line 5, C:/Ruby26-x64/lib/ruby/gems/2.6.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -70,31 +71,93 @@ body {
   font-family: "Microsoft YaHei";
 }
 
-/* line 3, ../sass/back-common.scss */
-body {
-  padding: 0 10px;
-}
-
-/* line 7, ../sass/back-common.scss */
-.echarts-box {
+/* line 3, ../sass/welcome.scss */
+.login-bg {
   width: 100%;
   height: 100%;
+  background: url(../images/bg.jpg) no-repeat;
+  background-size: cover;
   overflow: hidden;
+  text-align: center;
 }
-/* line 12, ../sass/back-common.scss */
-.echarts-box .box-item {
+/* line 11, ../sass/welcome.scss */
+.login-bg .title {
+  font-size: 24px;
+  margin-top: 20px;
+  padding-left: 20px;
+  margin-bottom: 70%;
+  text-align: left;
+  font-weight: 700;
+  color: #333;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* line 23, ../sass/welcome.scss */
+.register-wrapper {
+  display: none;
+}
+/* line 26, ../sass/welcome.scss */
+.register-wrapper > h1 {
+  font-size: 24px;
+  margin-top: 100px;
+  margin-bottom: 20%;
+  font-weight: 700;
+  color: #333;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+/* line 35, ../sass/welcome.scss */
+.register-wrapper .my-form {
+  background: transparent;
+}
+/* line 39, ../sass/welcome.scss */
+.register-wrapper .right-btn {
+  float: right;
+  margin-top: 11px;
+  margin-right: 11px;
+}
+/* line 45, ../sass/welcome.scss */
+.register-wrapper .left {
   float: left;
-  width: 50%;
-  height: 300px;
+  margin-top: 20px;
+  margin-left: 20px;
 }
 
-/* line 19, ../sass/back-common.scss */
-.layui-laypage .layui-laypage-curr .layui-laypage-em {
-  background-color: #1E9FFF;
+/* line 52, ../sass/welcome.scss */
+.login-wrapper {
+  display: none;
+}
+/* line 55, ../sass/welcome.scss */
+.login-wrapper > h1 {
+  font-size: 24px;
+  margin-top: 100px;
+  margin-bottom: 30%;
+  font-weight: 700;
+  color: #333;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+/* line 64, ../sass/welcome.scss */
+.login-wrapper .my-form {
+  background: transparent;
 }
 
-/* line 23, ../sass/back-common.scss */
-.layui-laypage input:focus,
-.layui-laypage select:focus {
-  border-color: #1E9FFF !important;
+/* line 69, ../sass/welcome.scss */
+.mui-input-row .mui-switch {
+  float: left;
+}
+
+/* line 73, ../sass/welcome.scss */
+.mui-switch.mui-active:before {
+  right: auto;
+  left: 15px;
+  content: '男';
+  color: #fff;
+}
+
+/* line 80, ../sass/welcome.scss */
+.mui-switch:before {
+  top: 5px;
+  right: 11px;
+  content: '女';
+  text-transform: uppercase;
+  color: #999;
 }

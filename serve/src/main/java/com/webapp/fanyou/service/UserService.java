@@ -10,4 +10,6 @@ public interface UserService {
     Map<String,String> register(Map<String, String> params);
 
     Boolean updateLoginTime(String id);
+
+    int getMaxUserId();
 }

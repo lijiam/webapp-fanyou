@@ -11,6 +11,11 @@ public class RouterController {
         return "pages/index";
     }
 
+    @RequestMapping("/welcome")
+    public String welcome() {
+        return "pages/welcome";
+    }
+
     @RequestMapping("/back")
     public String backIndex() {
         return "backpages/index";

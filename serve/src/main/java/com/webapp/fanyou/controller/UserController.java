@@ -17,6 +17,11 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    /**
+     * 登录
+     * @param params
+     * @return
+     */
     @RequestMapping("/login")
     public Map login(@RequestBody Map<String, String> params) {
         User user = userService.login(params);
@@ -35,10 +40,22 @@ public class UserController {
         return map;
     }
 
+    /**
+     * 注册
+     * @param params
+     * @return
+     */
     @RequestMapping("/register")
     public Map<String, String> register(@RequestBody Map<String, String> params) {
         return userService.register(params);
     }
 
-
+    /**
+     * 获取最大的用户ID号
+     * @return
+     */
+    @RequestMapping("/getMaxUserId")
+    public int getMaxUserId() {
+        return userService.getMaxUserId();
+    }
 }
