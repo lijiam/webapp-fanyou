@@ -1,0 +1,75 @@
+@import "./common.scss";
+
+body {
+  overflow: hidden;
+}
+
+.store-address {
+  padding-left: 12px;
+  margin: 15px 0;
+  font-size: 14px;
+  color: #999;
+}
+
+.store-list {
+  height: calc(100% - 150px);
+  overflow: auto;
+  border-top: 1px solid rgb(221, 221, 221);
+  border-bottom: 1px solid rgb(221, 221, 221);
+
+  &>li {
+    display: flex;
+    padding: 10px 0;
+    margin: 0 12px;
+    border-bottom: 1px solid rgb(221, 221, 221);
+    box-sizing: border-box;
+
+    .left {
+      width: 60px;
+      height: 60px;
+    }
+
+    .middle {
+      flex: 1;
+      margin-left: 12px;
+
+      &>div {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 16px;
+      }
+    }
+
+    .right {
+      width: 80px;
+      padding-top: 20px;
+
+      .jian {
+        color: red;
+        font-size: 20px;
+      }
+
+      .num {
+        display: inline-block;
+        color: #333;
+        font-size: 16px;
+        height: 24px;
+        line-height: 24px;
+        margin: 0 8px;
+      }
+
+      .jia {
+        color: $theme;
+        font-size: 23px;
+        position: relative;
+        top: 2px;
+      }
+    }
+  }
+}
+
+.mybtn{
+  float: right;
+  margin-right: 12px;
+  margin-top: 15px;
+}

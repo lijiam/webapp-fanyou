@@ -93,29 +93,15 @@ body {
   color: #fff;
 }
 
-/* line 3, ../sass/reset.scss */
-.layui-nav-bar,
-.layui-nav-tree .layui-this > a,
-.layui-nav-tree .layui-this > a:hover,
-.layui-nav-tree .layui-nav-bar,
-.layui-nav-child dd.layui-this,
-.layui-nav .layui-nav-child dd.layui-this a,
-.layui-nav .layui-this:after,
-.layui-form-select dl dd.layui-this {
-  background-color: #1E9FFF;
+/* line 3, ../sass/joinin.scss */
+body {
+  overflow: hidden;
 }
 
-/* line 14, ../sass/reset.scss */
-.layui-btn-primary:hover {
-  border-color: #1E9FFF;
-}
-
-/* line 18, ../sass/reset.scss */
-.fanyou-theme {
-  color: #1E9FFF !important;
-}
-
-/* line 22, ../sass/reset.scss */
-.fanyou-bg-theme {
-  background-color: #1E9FFF !important;
+/* line 7, ../sass/joinin.scss */
+.store-address {
+  padding-left: 12px;
+  margin: 15px 0;
+  font-size: 14px;
+  color: #999;
 }

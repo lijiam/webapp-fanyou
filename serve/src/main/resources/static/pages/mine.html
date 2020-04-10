@@ -10,16 +10,31 @@
 </head>
 
 <body>
+  <h1 style="font-size: 20px;margin: 12px 0;padding: 0 12px;">用户昵称：<span id="name"></span></h1>
+  <h5 style="font-size: 14px;padding-left: 12px;margin-bottom: 12px;">用户ID：<span id="id"></span></h5>
   <ul class="mui-table-view">
-    <li class="mui-table-view-cell"><span class="mui-icon mui-icon-person"></span>性别：女</li>
-    <li class="mui-table-view-cell"><span class="mui-icon mui-icon-phone"></span>手机号：15896582354</li>
-    <li class="mui-table-view-cell"><span class="mui-icon mui-icon-star"></span>喜好</li>
+    <li class="mui-table-view-cell"><span class="mui-icon mui-icon-person"></span>性别：<span id="sex">男</span></li>
+    <li class="mui-table-view-cell"><span class="mui-icon mui-icon-phone"></span>手机号：<span id="phone">99999999999</span>
+    </li>
+    <li class="mui-table-view-cell"><span class="mui-icon mui-icon-star"></span>喜好 <span id="like"></span></li>
+    <li class="mui-table-view-cell" onclick="javascript:parent.setFrameSrc('./joinin.html')"><span
+        class="mui-icon mui-icon-email"></span>我要加盟</li>
     <li class="mui-table-view-cell"><span class="mui-icon mui-icon-gear"></span>设置</li>
   </ul>
 
+  <script src="../scripts/jquery.v1.7.2.js"></script>
+  <script src="../scripts/common_utils.js"></script>
   <script src="../scripts/mui/js/mui.min.js"></script>
   <script>
     mui.init();
+    $(function () {
+      var user = JSON.parse(localStorage.getItem('user'));
+      $("#id").html(user.id);
+      $("#name").html(user.name);
+      $("#phone").html(user.phone);
+      $("#sex").html(user.sex);
+      $("#like").html(user.like);
+    })
   </script>
 </body>
 

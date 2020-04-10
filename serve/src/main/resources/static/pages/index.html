@@ -4,24 +4,23 @@
 <head>
 	<meta charset="utf-8">
 	<title>饭友用户端</title>
-	<meta name="viewport"
-		content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 	<link rel="stylesheet" type="text/css" href="../scripts/iconfonts/iconfont.css" />
 	<link rel="stylesheet" type="text/css" href="../styles/index.css" />
 </head>
 
 <body>
 	<ul class="my-tabs">
-		<li class="my-tab-item active" data-url="./home.html"><i class="iconfont icon-shouye"></i>
+		<li class="my-tab-item active" data-url="./home.html"><i class="iconfont iconshouye"></i>
 			<div>首页</div>
 		</li>
-		<li class="my-tab-item" data-url="./shopping.html"><i class="iconfont icon-gouwuche"></i>
+		<li class="my-tab-item" data-url="./shopping.html"><i class="iconfont icongouwuche"></i>
 			<div>购物车</div>
 		</li>
-		<li class="my-tab-item" data-url="./order.html"><i class="iconfont icon-dingdan"></i>
+		<li class="my-tab-item" data-url="./order.html"><i class="iconfont icondingdan"></i>
 			<div>订单</div>
 		</li>
-		<li class="my-tab-item" data-url="./mine.html"><i class="iconfont icon-wode"></i>
+		<li class="my-tab-item" data-url="./mine.html"><i class="iconfont iconziyuan"></i>
 			<div>我的</div>
 		</li>
 	</ul>
@@ -35,6 +34,10 @@
 			$(this).addClass('active');
 			$(this).siblings('li').removeClass('active');
 		})
+
+		function setFrameSrc(src) {
+			$('#bodyContainer').attr('src', src);
+		}
 	</script>
 </body>
 

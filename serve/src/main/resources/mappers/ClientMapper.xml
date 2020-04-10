@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webapp.fanyou.mapper.ClientMapper">
+    <select id="getAllStores" resultType="com.webapp.fanyou.bean.Store">
+        select * from store where is_check = '1' order by update_time desc
+    </select>
+    
+    <select id="getStoreById" resultType="com.webapp.fanyou.bean.Store">
+        select * from store where is_check = '1' and id = #{id}
+    </select>
+
+    <select id="getAllFoods" resultType="com.webapp.fanyou.bean.Food">
+        SELECT
+	t1.*,
+	ifnull( t2.NAME, '未知' ) food_type_name
+    FROM
+	food t1
+	LEFT JOIN wd_dm t2 ON t1.food_type = t2.id
+	AND t2.type_id = 'food_type'
+	order by t1.id
+    </select>
+
+    <insert id="newStore" parameterType="java.util.Map">
+        insert into store (apply_name,apply_sex,apply_phone,apply_address,apply_city)
+        values (#{apply_name},#{apply_sex},#{apply_phone},#{apply_address},#{apply_city})
+    </insert>
+</mapper>

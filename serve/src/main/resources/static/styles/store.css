@@ -93,29 +93,55 @@ body {
   color: #fff;
 }
 
-/* line 3, ../sass/reset.scss */
-.layui-nav-bar,
-.layui-nav-tree .layui-this > a,
-.layui-nav-tree .layui-this > a:hover,
-.layui-nav-tree .layui-nav-bar,
-.layui-nav-child dd.layui-this,
-.layui-nav .layui-nav-child dd.layui-this a,
-.layui-nav .layui-this:after,
-.layui-form-select dl dd.layui-this {
-  background-color: #1E9FFF;
+/* line 3, ../sass/store.scss */
+body {
+  overflow: hidden;
 }
 
-/* line 14, ../sass/reset.scss */
-.layui-btn-primary:hover {
-  border-color: #1E9FFF;
+/* line 7, ../sass/store.scss */
+.store-address {
+  padding-left: 12px;
+  margin: 15px 0;
+  font-size: 14px;
+  color: #999;
 }
 
-/* line 18, ../sass/reset.scss */
-.fanyou-theme {
-  color: #1E9FFF !important;
+/* line 14, ../sass/store.scss */
+.store-list {
+  height: calc(100% - 88px);
+  overflow: auto;
 }
-
-/* line 22, ../sass/reset.scss */
-.fanyou-bg-theme {
-  background-color: #1E9FFF !important;
+/* line 18, ../sass/store.scss */
+.store-list > li {
+  display: flex;
+  padding: 10px 12px;
+  border-bottom: 1px solid #dddddd;
+  box-sizing: border-box;
+}
+/* line 24, ../sass/store.scss */
+.store-list > li:first-child {
+  border-top: 1px solid #dddddd;
+}
+/* line 28, ../sass/store.scss */
+.store-list > li .left {
+  width: 60px;
+  height: 60px;
+}
+/* line 33, ../sass/store.scss */
+.store-list > li .middle {
+  flex: 1;
+  margin-left: 12px;
+}
+/* line 37, ../sass/store.scss */
+.store-list > li .middle > div {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 16px;
+}
+/* line 44, ../sass/store.scss */
+.store-list > li .right {
+  width: 20px;
+  font-size: 20px;
+  color: #1E9FFF;
+  padding-top: 20px;
 }

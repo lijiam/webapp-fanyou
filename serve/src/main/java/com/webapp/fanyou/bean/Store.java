@@ -6,6 +6,7 @@ public class Store {
     private String name;
     private String address;
     private String y_money;
+    private String hot_food;
     private String phone;
     private String apply_name;
     private String apply_sex;
@@ -17,6 +18,14 @@ public class Store {
     private String check_time;
     private String update_time;
     private String apply_status;
+
+    public String getHot_food() {
+        return hot_food;
+    }
+
+    public void setHot_food(String hot_food) {
+        this.hot_food = hot_food;
+    }
 
     public String getApply_status() {
         return apply_status;

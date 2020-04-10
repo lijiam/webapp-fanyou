@@ -31,7 +31,7 @@
             </div>
             <div class="mui-input-row">
                 <label>性别</label>
-                <div class="mui-switch mui-switch-blue mui-active">
+                <div class="mui-switch mui-switch-blue mui-active" id="mySwitch">
                     <div class="mui-switch-handle"></div>
                 </div>
             </div>
@@ -106,13 +106,46 @@
 
         // 点击注册
         function ajaxToRegister() {
-
-            $.ajax({
-                url: '/api/user/register',
-                success: function (res) {
-                    if (res) {
-
-                    }
+            // 获取性别参数
+            var sex = '男';
+            var isActive = document.getElementById("mySwitch").classList.contains("mui-active");
+            if (!isActive) sex = '女';
+            // 用户名
+            var name = $("#username").val();
+            if (name === '') {
+                mui.toast('用户名不能为空');
+                return;
+            }
+            // 判断密码是否相同
+            var password1 = $("#password1").val();
+            var password2 = $("#password2").val();
+            if (password1 === '' || password2 === '') {
+                mui.toast('密码不能为空');
+                return;
+            }
+            if (password1 !== password2) {
+                mui.toast('两次密码不同，请重新输入');
+                return;
+            }
+            // 手机号
+            var phone = $("#phone").val();
+            if (phone === '') {
+                mui.toast('手机号不能为空');
+                return;
+            }
+            var params = {
+                name: name,
+                sex: sex,
+                password: password1,
+                phone: phone,
+                user_type: '0'
+            }
+            Utils.doAjax('/api/user/register', params, function (res) {
+                if (res.code === '1') {
+                    mui.toast(res.msg);
+                    gotoLogin();
+                } else {
+                    mui.toast(res.msg);
                 }
             })
         }

@@ -5,33 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>购物车</title>
+  <title>商店</title>
   <link rel="stylesheet" type="text/css" href="../scripts/mui/css/mui.min.css" />
   <link rel="stylesheet" type="text/css" href="../scripts/iconfonts/iconfont.css" />
-  <link rel="stylesheet" type="text/css" href="../styles/shopping.css" />
+  <link rel="stylesheet" type="text/css" href="../styles/store.css" />
 </head>
 
 <body>
   <div class="head">
     <i class="iconfont iconfanhui myicon" onclick="javascript:parent.setFrameSrc('./home.html')"></i>
-    <h1 class="title" id="name">购物车</h1>
+    <h1 class="title" id="name">店铺名称</h1>
   </div>
-  <div class="store-address">共3样菜，合计500元</div>
+  <div class="store-address">地址：<span id="address">这里是店铺地址</span></div>
   <ul class="store-list" id="foodList">
-    <li>
+    <!-- <li>
       <img class="left" src="../images/foods/001.png" alt="" srcset="">
       <div class="middle">
         <div>银耳羹</div>
         <div>¥8</div>
       </div>
-      <div class="right">
-        <i class="iconfont iconjianhao jian"></i>
-        <span class="num">1</span>
-        <i class="iconfont iconjiahao jia"></i>
-      </div>
-    </li>
+      <i class="iconfont iconjiahao right"></i>
+    </li> -->
   </ul>
-  <button type="button" class="mui-btn mui-btn-danger mybtn">结算</button>
 
   <script src="../scripts/jquery.v1.7.2.js"></script>
   <script src="../scripts/common_utils.js"></script>

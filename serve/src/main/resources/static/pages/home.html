@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,13 +8,80 @@
   <title>首页</title>
   <link rel="stylesheet" type="text/css" href="../scripts/mui/css/mui.min.css" />
   <link rel="stylesheet" type="text/css" href="../scripts/iconfonts/iconfont.css" />
-	<link rel="stylesheet" type="text/css" href="../styles/home.css" />
+  <link rel="stylesheet" type="text/css" href="../styles/home.css" />
 </head>
+
 <body>
-  <button class="ui-btn">普通按钮</button>
+  <!-- 轮播图 -->
+  <div class="mui-slider my-sliders">
+    <div class="mui-slider-group">
+      <div class="mui-slider-item">
+        <div class="img1"></div>
+      </div>
+      <div class="mui-slider-item">
+        <div class="img2"></div>
+      </div>
+      <div class="mui-slider-item">
+        <div class="img3"></div>
+      </div>
+      <div class="mui-slider-item">
+        <div class="img4"></div>
+      </div>
+      <div class="mui-slider-item">
+        <div class="img5"></div>
+      </div>
+    </div>
+  </div>
+  <h3 class="jrtj">今日推荐</h3>
+  <!-- 各分店详细地址 -->
+  <div class="store-address">
+    <h1>各分店详细地址</h1>
+    <ul class="mui-table-view" id="storesList">
+      <!-- <li class="mui-table-view-cell mui-collapse .mui-active">
+        <a class="mui-navigate-right" href="#">杭州分店</a>
+        <div class="mui-collapse-content">
+          <p>地址：浙江省杭州市西湖区幸福街道1号。<br />主推菜：鸡翅煲</p>
+        </div>
+      </li> -->
+    </ul>
+  </div>
+
+  <div class="store-choose">
+    <h1>选择分店</h1>
+    <ul class="fens">
+      <li class="bg1" onclick="javascript:parent.setFrameSrc('./store.html?id=1')"></li>
+      <li class="bg2" onclick="javascript:parent.setFrameSrc('./store.html?id=2')"></li>
+      <li class="bg3" onclick="javascript:parent.setFrameSrc('./store.html?id=3')"></li>
+      <li class="bg4" onclick="javascript:parent.setFrameSrc('./store.html?id=4')"></li>
+      <li class="bg5" onclick="javascript:parent.setFrameSrc('./store.html?id=5')"></li>
+      <li class="bg6" onclick="javascript:parent.setFrameSrc('./store.html?id=6')"></li>
+    </ul>
+  </div>
+
+  <script src="../scripts/jquery.v1.7.2.js"></script>
+  <script src="../scripts/common_utils.js"></script>
   <script src="../scripts/mui/js/mui.min.js"></script>
   <script type="text/javascript">
-		mui.init()
-	</script>
+    mui.init();
+
+    $(function () {
+      Utils.doAjax('/api/client/getAllStores', {}, function (res) {
+        console.log(res)
+        if (res) {
+          var str = '';
+          for (var i = 0, len = res.length; i < len; i++) {
+            str += '<li class="mui-table-view-cell mui-collapse">' +
+              '<a class="mui-navigate-right" href="#">' + res[i].name + '</a>' +
+              '<div class="mui-collapse-content">' +
+              '<p>地址：' + res[i].address + '。<br />主推菜：' + res[i].hot_food + '</p>' +
+              '</div>' +
+              '</li>';
+          }
+          $("#storesList").html(str);
+        }
+      })
+    })
+  </script>
 </body>
+
 </html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>加盟申请</title>
+  <link rel="stylesheet" type="text/css" href="../scripts/mui/css/mui.min.css" />
+  <link rel="stylesheet" type="text/css" href="../scripts/iconfonts/iconfont.css" />
+  <link rel="stylesheet" href="../styles/joinin.css">
+</head>
+
+<body>
+  <div class="head">
+    <i class="iconfont iconfanhui myicon" onclick="javascript:parent.setFrameSrc('./home.html')"></i>
+    <h1 class="title" id="name">加盟申请</h1>
+  </div>
+  <div class="store-address">咨询电话：82598888</div>
+  <form class="mui-input-group" id="input_example">
+    <div class="mui-input-row">
+      <label>姓名</label>
+      <input id="apply_name" type="text" class="mui-input-clear" placeholder="请输入姓名">
+    </div>
+    <div class="mui-input-row">
+      <label>性别</label>
+      <input id="apply_sex" type="text" class="mui-input-clear" placeholder="请输入性别">
+    </div>
+    <div class="mui-input-row">
+      <label>联系方式</label>
+      <input id="apply_phone" type="text" class="mui-input-clear" placeholder="请输入联系方式">
+    </div>
+    <div class="mui-input-row">
+      <label>联系住址</label>
+      <input id="apply_address" type="text" class="mui-input-clear" placeholder="请输入联系地址">
+    </div>
+    <div class="mui-input-row">
+      <label>加盟区域意向</label>
+      <input id="apply_city" type="text" class="mui-input-clear" placeholder="请输入加盟区域意向">
+    </div>
+    <div class="mui-button-row">
+      <button type="button" class="mui-btn mui-btn-primary" onclick="doSubmitForm()">提交</button>
+    </div>
+  </form>
+
+  <script src="../scripts/jquery.v1.7.2.js"></script>
+  <script src="../scripts/common_utils.js"></script>
+  <script src="../scripts/mui/js/mui.min.js"></script>
+  <script type="text/javascript">
+    mui.init();
+    function doSubmitForm() {
+      var check = true;
+      mui("#input_example input").each(function () {
+        //若当前input为空，则提醒 
+        if (!this.value || this.value.trim() == "") {
+          var label = this.previousElementSibling;
+          mui.toast(label.innerText + "不允许为空");
+          check = false;
+          return false;
+        }
+        if (check) {
+          Utils.doAjax('/api/client/newStore', {
+            apply_name: $("#apply_name").val(),
+            apply_sex: $("#apply_sex").val(),
+            apply_phone: $("#apply_phone").val(),
+            apply_address: $("#apply_address").val(),
+            apply_city: $("#apply_city").val()
+          }, function (res) {
+            console.log(res)
+          })
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

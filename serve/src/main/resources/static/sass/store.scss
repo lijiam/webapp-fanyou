@@ -1,0 +1,51 @@
+@import "./common.scss";
+
+body {
+  overflow: hidden;
+}
+
+.store-address {
+  padding-left: 12px;
+  margin: 15px 0;
+  font-size: 14px;
+  color: #999;
+}
+
+.store-list {
+  height: calc(100% - 88px);
+  overflow: auto;
+
+  &>li {
+    display: flex;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgb(221, 221, 221);
+    box-sizing: border-box;
+
+    &:first-child {
+      border-top: 1px solid rgb(221, 221, 221);
+    }
+
+    .left {
+      width: 60px;
+      height: 60px;
+    }
+
+    .middle {
+      flex: 1;
+      margin-left: 12px;
+
+      &>div {
+        font-size: 14px;
+        color: #333;
+        margin-bottom: 16px;
+      }
+    }
+
+    .right {
+      width: 20px;
+      font-size: 20px;
+      color: $theme;
+      padding-top: 20px;
+    }
+  }
+}
