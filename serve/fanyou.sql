@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 12/04/2020 17:40:26
+ Date: 12/04/2020 17:49:04
 */
 
 SET NAMES utf8mb4;
@@ -201,7 +201,6 @@ INSERT INTO `store` VALUES (3, '宁波分店', '../images/stores/003.png', '浙�
 INSERT INTO `store` VALUES (4, '绍兴分店', '../images/stores/004.png', '浙江省绍兴市柯桥区万达金街29号', '蟹炒年糕', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2020-04-10 08:45:31', '2020-04-10 08:45:31', '2020-04-10 08:45:31');
 INSERT INTO `store` VALUES (5, '金华分店', '../images/stores/005.png', '浙江省金华市婺城区贤才街道63号', '蛋包饭', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2020-04-10 08:45:33', '2020-04-10 08:45:33', '2020-04-10 08:45:33');
 INSERT INTO `store` VALUES (6, '温州分店', '../images/stores/006.png', '浙江省温州市鹿城区阳光街道12号', '拔丝地瓜', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2020-04-10 08:45:34', '2020-04-10 08:45:34', '2020-04-10 08:45:34');
-INSERT INTO `store` VALUES (18, NULL, NULL, NULL, NULL, NULL, NULL, '阿斯顿法国', '都发给对方', '是都发给对方', '电饭锅', '是大法官', '-1', '2020-04-12 17:00:47', '2020-04-12 17:00:47', '2020-04-12 17:00:47');
 
 -- ----------------------------
 -- Table structure for user
@@ -219,18 +218,6 @@ CREATE TABLE `user`  (
   `user_type` char(1) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0' COMMENT '用户类型代码（详见wd_dm表）',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of user
--- ----------------------------
-INSERT INTO `user` VALUES (4, 'root', '13827832831', '123', '女', NULL, '2020-01-24 16:52:27', '2020-04-12 16:39:29', '1');
-INSERT INTO `user` VALUES (5, 'admin', NULL, '123', '女', NULL, '2020-01-24 16:52:50', '2020-04-12 16:39:09', '2');
-INSERT INTO `user` VALUES (6, 'admin3', NULL, '123', '男', NULL, '2020-01-24 16:54:00', '2020-01-24 16:54:00', '3');
-INSERT INTO `user` VALUES (7, 'custom', NULL, '123', '男', NULL, '2020-01-24 16:54:08', '2020-04-08 21:51:36', '0');
-INSERT INTO `user` VALUES (9, 'sdfasd', NULL, '123', NULL, NULL, '2020-04-09 18:59:40', '2020-04-09 18:59:40', '0');
-INSERT INTO `user` VALUES (10, 'dgdfgdsfgsdf', '1233245355', '123', '女', NULL, '2020-04-09 19:01:09', '2020-04-09 19:01:09', '0');
-INSERT INTO `user` VALUES (11, 'adminsdfsd', NULL, '123', NULL, NULL, '2020-04-09 19:01:58', '2020-04-09 19:01:58', '1');
-INSERT INTO `user` VALUES (12, 'jm', '12352362584', '1234', '男', NULL, '2020-04-09 19:03:03', '2020-04-12 16:45:58', '0');
 
 -- ----------------------------
 -- Table structure for wd_dm
