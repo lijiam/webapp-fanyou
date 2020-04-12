@@ -18,7 +18,8 @@
   </div>
   <div class="store-address">地址：<span id="address">这里是店铺地址</span></div>
   <ul class="store-list" id="foodList">
-    <!-- <li>
+    <!-- <div class="item-head">菜品种类名称</div>
+    <li>
       <img class="left" src="../images/foods/001.png" alt="" srcset="">
       <div class="middle">
         <div>银耳羹</div>
@@ -34,8 +35,18 @@
   <script type="text/javascript">
     mui.init();
 
+    var storeid = window.location.search.split('=')[1];
+    localStorage.setItem('storeid', storeid);
+
+    function addToShopCar(foodid) {
+      var user = JSON.parse(localStorage.getItem('user'));
+      Utils.doAjax('/api/client/addToShopCar', { userid: user.id, foodid: foodid, storeid: storeid }, function (res) {
+        if (res) mui.toast('已加入购物车', { duration: 1000 })
+      })
+    }
+
     $(function () {
-      Utils.doAjax('/api/client/getStoreById', { id: window.location.search.split('=')[1] }, function (res) {
+      Utils.doAjax('/api/client/getStoreById', { id: storeid }, function (res) {
         $("#name").html(res.name);
         $("#address").html(res.address);
       })
@@ -43,13 +54,17 @@
         if (res) {
           var str = '';
           for (var i = 0, len = res.length; i < len; i++) {
+            var title = res[i].food_type_name;
+            if ((i > 0 && res[i - 1].food_type_name !== title) || i === 0) {
+              str += '<div class="item-head">' + title + '</div>';
+            }
             str += '<li>' +
               '<img class="left" src="' + res[i].food_img + '" alt="" srcset="">' +
               '<div class="middle">' +
               '<div>' + res[i].name + '</div>' +
               '<div>¥' + res[i].price + '</div>' +
               '</div>' +
-              '<i class="iconfont iconjiahao right"></i>' +
+              '<i class="iconfont iconjiahao right" onclick="addToShopCar(\'' + res[i].id + '\')"></i>' +
               '</li>';
           }
           $("#foodList").html(str);

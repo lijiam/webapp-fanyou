@@ -4,6 +4,7 @@ public class Store {
 
     private String id;
     private String name;
+    private String logo;
     private String address;
     private String y_money;
     private String hot_food;
@@ -18,6 +19,14 @@ public class Store {
     private String check_time;
     private String update_time;
     private String apply_status;
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 
     public String getHot_food() {
         return hot_food;

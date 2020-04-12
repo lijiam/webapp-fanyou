@@ -1,0 +1,38 @@
+@import "./common.scss";
+
+body {
+  background: #efefef;
+}
+
+.success {
+  width: 250px;
+  height: 170px;
+  margin: 50% auto;
+  background: #ffffff;
+  padding-top: 30px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+
+  .iiicon {
+    font-size: 50px;
+    color: green;
+    margin-left: 50%;
+    position: relative;
+    left: -25px;
+  }
+
+  &>h1 {
+    font-size: 28px;
+    text-align: center;
+    color: #333;
+    font-family: 400;
+    margin-top: 30px;
+  }
+
+  .desc {
+    text-align: center;
+    font-size: 16px;
+    color: #999;
+    margin-top: 15px;
+  }
+}

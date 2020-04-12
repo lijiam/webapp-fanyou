@@ -6,11 +6,29 @@ public class Order {
     private String order_type_id;
     private String order_type_name;
     private String user_id;
+    private String storeid;
     private String user_name;
     private String money;
     private String discount_money;
     private String create_time;
     private String pingjia;
+    private String beizhu;
+
+    public String getStoreid() {
+        return storeid;
+    }
+
+    public void setStoreid(String storeid) {
+        this.storeid = storeid;
+    }
+
+    public String getBeizhu() {
+        return beizhu;
+    }
+
+    public void setBeizhu(String beizhu) {
+        this.beizhu = beizhu;
+    }
 
     public String getId() {
         return id;

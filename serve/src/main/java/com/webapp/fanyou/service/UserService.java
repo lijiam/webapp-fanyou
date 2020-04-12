@@ -12,4 +12,6 @@ public interface UserService {
     Boolean updateLoginTime(String id);
 
     int getMaxUserId();
+
+    Boolean updatePassword(Map<String, String> params);
 }

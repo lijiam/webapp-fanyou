@@ -19,4 +19,7 @@
     <select id="getMaxUserId" resultType="java.lang.Integer">
         select count(1) from user where user_type = '0'
     </select>
+    <update id="updatePassword" parameterType="java.util.Map">
+        update user set password = #{password} where id = #{userid}
+    </update>
 </mapper>

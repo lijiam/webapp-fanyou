@@ -38,6 +38,11 @@
 		function setFrameSrc(src) {
 			$('#bodyContainer').attr('src', src);
 		}
+
+		$(function () {
+			var user = localStorage.getItem('user');
+			if (!user) window.location.href = '/welcome';
+		})
 	</script>
 </body>
 

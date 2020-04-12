@@ -44,7 +44,7 @@ t1.id
     </select>
 
     <update id="updateDesk" parameterType="java.util.Map">
-        update desk set number = #{number}, desk_type = #{desk_type} where id = #{id}
+        update desk set number = #{number}, desk_type = #{desk_type}, starttime = now() where id = #{id}
     </update>
 
     <select id="getAllStocks" resultType="com.webapp.fanyou.bean.Stock">
@@ -72,7 +72,7 @@ t1.id
     </update>
     
     <select id="getAllOrders" resultType="com.webapp.fanyou.bean.Order">
-        select t1.*, t2.name order_type_name, t3.name user_name from orders t1, wd_dm t2, user t3 where t1.type = t2.id and t1.user_id = t3.id and t2.type_id = 'order_type'
+        select t1.*, t2.name order_type_name, t3.name user_name from orders t1, wd_dm t2, user t3 where t1.type = t2.id and t1.user_id = t3.id and t2.type_id = 'order_type' order by t1.create_time desc
     </select>
 
     <select id="getOrderById" resultType="com.webapp.fanyou.bean.OrderDetail">

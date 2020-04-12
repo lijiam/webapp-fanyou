@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>订单详情</title>
+  <link rel="stylesheet" type="text/css" href="../scripts/mui/css/mui.min.css" />
+  <link rel="stylesheet" type="text/css" href="../scripts/iconfonts/iconfont.css" />
+  <link rel="stylesheet" type="text/css" href="../styles/order-detail.css" />
+</head>
+
+<body>
+  <div class="head">
+    <i class="iconfont iconfanhui myicon" onclick="javascript:parent.setFrameSrc('./order.html')"></i>
+    <h1 class="title" id="name">订单详情</h1>
+  </div>
+  <ul class="store-list" id="foodList">
+    <!-- <li>
+      <img class="left" src="../images/foods/001.png" alt="" srcset="">
+      <div class="middle">银耳羹 * 2</div>
+      <div class="right">
+        <span class="num">￥100</span>
+      </div>
+    </li> -->
+  </ul>
+  <div class="mui-input-row">
+    <label>评价</label>
+    <input type="text" id="pinjia" class="mui-input-clear" placeholder="请输入评价">
+  </div>
+  <div class="store-address">
+    共<span style="color: red;" id='num'>0</span>样菜，合计<span style="color: red;" id='total'>0</span>元
+  </div>
+  <button type="button" class="mui-btn mui-btn-primary mybtn" onclick="gotoPay()">提交评价</button>
+
+  <script src="../scripts/jquery.v1.7.2.js"></script>
+  <script src="../scripts/common_utils.js"></script>
+  <script src="../scripts/mui/js/mui.min.js"></script>
+  <script type="text/javascript">
+    mui.init();
+
+    var orderid = window.location.search.split('=')[1]
+
+    function initCar() {
+      Utils.doAjax('/api/client/getOrderDetail', { orderid: orderid }, function (res) {
+        if (res) {
+          var total = 0;
+          var num = 0;
+          var str = '';
+          for (var i = 0, len = res.length; i < len; i++) {
+            total += res[i].foodprice * res[i].foodnum;
+            if (res[i].foodnum > 0) {
+              num++;
+              str += '<li>' +
+                '<img class="left" src="' + res[i].foodimg + '" alt="" srcset="">' +
+                '<div class="middle">' + res[i].foodname + ' * ' + res[i].foodnum + '</div>' +
+                '<div class="right">' +
+                '<span class="num">￥' + (res[i].foodprice * res[i].foodnum) + '</span>' +
+                '</div>' +
+                '</li>';
+            }
+          }
+          $("#total").html(total);
+          $("#num").html(num);
+          $("#foodList").html(str);
+        }
+      })
+    }
+
+    function gotoPay() {
+      var pj = $("#pinjia").val();
+      if (pj === '') {
+        mui.toast('请输入评价内容');
+        return;
+      }
+      mui.confirm('确认提交评价？', '提示', null, function (e) {
+        if (e.index === 1) {
+          Utils.doAjax('/api/client/sendOrderPinjia', {
+            orderid: orderid,
+            pingjia: $("#pinjia").val()
+          }, function (res) {
+            if (res) mui.toast('评价成功');
+            else mui.toast('评价失败，请联系店家');
+          })
+        }
+      })
+    }
+
+    $(function () {
+      initCar();
+    })
+  </script>
+</body>
+
+</html>

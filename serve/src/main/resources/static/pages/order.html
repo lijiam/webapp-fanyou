@@ -1,12 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>订单</title>
+  <title>订单列表</title>
+  <link rel="stylesheet" type="text/css" href="../scripts/mui/css/mui.min.css" />
+  <link rel="stylesheet" type="text/css" href="../scripts/iconfonts/iconfont.css" />
+  <link rel="stylesheet" type="text/css" href="../styles/order.css" />
 </head>
+
 <body>
-  史蒂夫
+  <div class="head">
+    <h1 class="title">订单列表</h1>
+  </div>
+  <ul class="order-list" id="orderList">
+    <!-- <li>
+      <div class="top">
+        <img src="../images/stores/001.png" alt="">
+        <div class="store-info">
+          <div class="info-name">杭州分店</div>
+          <div class="time">2020-02-02</div>
+        </div>
+        <div class="order-type">一下出</div>
+      </div>
+      <div class="money">￥100<button type="button" class="mui-btn mui-btn-primary">查看详情</button></div>
+    </li> -->
+  </ul>
+
+  <script src="../scripts/jquery.v1.7.2.js"></script>
+  <script src="../scripts/common_utils.js"></script>
+  <script src="../scripts/mui/js/mui.min.js"></script>
+  <script type="text/javascript">
+    mui.init();
+
+    var user = JSON.parse(localStorage.getItem('user'));
+
+    $(function () {
+      Utils.doAjax('/api/client/getAllOrders', { userid: user.id }, function (res) {
+        if (res) {
+          var str = '';
+          for (var i = 0, len = res.length; i < len; i++) {
+            str += '<li>' +
+              '<div class="top">' +
+              '<img src="' + res[i].logo + '" alt="">' +
+              '<div class="store-info">' +
+              '<div class="info-name">' + res[i].storename + '</div>' +
+              '<div class="time">' + res[i].create_time + '</div>' +
+              '</div>' +
+              '<div class="order-type">' + res[i].ordertype + '</div>' +
+              '</div>' +
+              '<div class="money">￥' + res[i].money + '<button type="button" class="mui-btn mui-btn-primary" onclick="javascript:parent.setFrameSrc(\'./orderdetail.html?orderid=' + res[i].orderid + '\')">查看详情</button></div>' +
+              '</li>';
+          }
+          $("#orderList").html(str);
+        }
+      })
+    })
+  </script>
 </body>
+
 </html>

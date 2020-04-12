@@ -13,17 +13,100 @@
 
     <select id="getAllFoods" resultType="com.webapp.fanyou.bean.Food">
         SELECT
-	t1.*,
-	ifnull( t2.NAME, '未知' ) food_type_name
-    FROM
-	food t1
-	LEFT JOIN wd_dm t2 ON t1.food_type = t2.id
-	AND t2.type_id = 'food_type'
-	order by t1.id
+        t1.*, ifnull(t2. NAME, '未知') food_type_name
+        FROM
+        food t1
+        LEFT JOIN wd_dm t2 ON t1.food_type = t2.id
+        AND t2.type_id = 'food_type'
+        AND t1.food_type != '-1'
+        ORDER BY
+        t1.food_type
     </select>
 
     <insert id="newStore" parameterType="java.util.Map">
         insert into store (apply_name,apply_sex,apply_phone,apply_address,apply_city)
         values (#{apply_name},#{apply_sex},#{apply_phone},#{apply_address},#{apply_city})
     </insert>
+
+    <insert id="addToShopCar" parameterType="java.util.Map">
+        INSERT INTO shop_car (userid, foodid, storeid, num) VALUES (#{userid}, #{foodid}, #{storeid}, 1)
+    </insert>
+
+    <insert id="jianShopNum" parameterType="java.util.Map">
+        INSERT INTO shop_car (userid, foodid, storeid, num) VALUES (#{userid}, #{foodid}, #{storeid}, -1)
+    </insert>
+
+    <select id="getShopCarData" resultType="com.webapp.fanyou.bean.ShopCar">
+        SELECT
+	SUM(t1.num) foodnum,
+	t1.foodid,
+	t1.userid,
+	t2. NAME foodname,
+	t2.price foodprice,
+	t2.food_img foodimg
+FROM
+	shop_car t1,
+	food t2
+WHERE
+	t1.userid = #{userid}
+AND t1.storeid = #{storeid}
+AND t1.foodid = t2.id
+GROUP BY
+	t1.foodid
+    </select>
+    
+    <delete id="deleteFromShopCar" parameterType="java.util.Map">
+        DELETE FROM shop_car WHERE userid = #{userid} and storeid = #{storeid}
+    </delete>
+
+    <insert id="addNewOrder" parameterType="java.util.Map">
+        INSERT INTO orders(id, user_id, storeid, type, money, discount_money, beizhu) VALUES (#{uuid}, #{userid}, #{storeid}, 1, #{money}, 0, #{beizhu})
+    </insert>
+
+    <insert id="addNewOrderDetail" parameterType="java.util.ArrayList">
+        insert into order_detail(id,food_id,food_number) values
+        <foreach collection="list" index="index" separator="," item="item">
+            (#{item.uuid},#{item.food_id},#{item.food_number})
+        </foreach>
+    </insert>
+
+    <select id="getAllOrders" resultType="com.webapp.fanyou.bean.OneOrder">
+        SELECT
+	t1.id orderid,
+	t2.logo logo,
+	t2.`name` storename,
+	t3.`name` ordertype,
+	t1.money,
+	t1.create_time
+FROM
+	orders t1,
+	store t2,
+	wd_dm t3
+WHERE
+	t1.user_id = #{userid}
+	AND t1.storeid = t2.id
+	AND t1.type = t3.id
+	AND t3.type_id = 'order_type'
+	order by t1.create_time desc
+    </select>
+
+    <select id="getOrderDetail" resultType="com.webapp.fanyou.bean.ShopCar">
+SELECT
+	t2.food_number foodnum,
+	t3.NAME foodname,
+	t3.price foodprice,
+	t3.food_img foodimg
+FROM
+	orders t1,
+	order_detail t2,
+	food t3
+WHERE
+	t1.id = #{orderid}
+	AND t1.id = t2.id
+	AND t2.food_id = t3.id
+    </select>
+
+    <update id="sendOrderPinjia" parameterType="java.util.Map">
+        update orders set pingjia = #{pingjia} WHERE id = #{orderid}
+    </update>
 </mapper>

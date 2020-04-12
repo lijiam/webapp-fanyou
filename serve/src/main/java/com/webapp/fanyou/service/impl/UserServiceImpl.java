@@ -51,4 +51,8 @@ public class UserServiceImpl implements UserService {
         return userMapper.getMaxUserId();
     }
 
+    @Override
+    public Boolean updatePassword(Map<String, String> params) {
+        return userMapper.updatePassword(params) > 0;
+    }
 }

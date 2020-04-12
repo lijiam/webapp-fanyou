@@ -93,66 +93,41 @@ body {
   color: #fff;
 }
 
-/* line 3, ../sass/store.scss */
+/* line 3, ../sass/paysuccess.scss */
 body {
-  overflow: hidden;
+  background: #efefef;
 }
 
-/* line 7, ../sass/store.scss */
-.store-address {
-  height: 40px;
-  line-height: 40px;
-  padding-left: 12px;
-  font-size: 14px;
-  color: #999;
-  border-bottom: 1px solid #dddddd;
+/* line 7, ../sass/paysuccess.scss */
+.success {
+  width: 250px;
+  height: 170px;
+  margin: 50% auto;
+  background: #ffffff;
+  padding-top: 30px;
+  border-radius: 4px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
-
-/* line 16, ../sass/store.scss */
-.store-list {
-  height: calc(100% - 88px);
-  overflow: auto;
+/* line 16, ../sass/paysuccess.scss */
+.success .iiicon {
+  font-size: 50px;
+  color: green;
+  margin-left: 50%;
+  position: relative;
+  left: -25px;
 }
-/* line 20, ../sass/store.scss */
-.store-list .item-head {
-  height: 24px;
-  line-height: 24px;
-  color: #999;
-  font-size: 16px;
-  padding-left: 12px;
-  background: #fff;
-}
-/* line 29, ../sass/store.scss */
-.store-list > li {
-  display: flex;
-  padding: 10px 12px;
-  border-bottom: 1px solid #dddddd;
-  box-sizing: border-box;
-}
-/* line 35, ../sass/store.scss */
-.store-list > li:first-child {
-  border-top: 1px solid #dddddd;
-}
-/* line 39, ../sass/store.scss */
-.store-list > li .left {
-  width: 60px;
-  height: 60px;
-}
-/* line 44, ../sass/store.scss */
-.store-list > li .middle {
-  flex: 1;
-  margin-left: 12px;
-}
-/* line 48, ../sass/store.scss */
-.store-list > li .middle > div {
-  font-size: 14px;
+/* line 24, ../sass/paysuccess.scss */
+.success > h1 {
+  font-size: 28px;
+  text-align: center;
   color: #333;
-  margin-bottom: 16px;
+  font-family: 400;
+  margin-top: 30px;
 }
-/* line 55, ../sass/store.scss */
-.store-list > li .right {
-  width: 20px;
-  font-size: 20px;
-  color: #1E9FFF;
-  padding-top: 20px;
+/* line 32, ../sass/paysuccess.scss */
+.success .desc {
+  text-align: center;
+  font-size: 16px;
+  color: #999;
+  margin-top: 15px;
 }

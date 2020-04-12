@@ -58,4 +58,9 @@ public class UserController {
     public int getMaxUserId() {
         return userService.getMaxUserId();
     }
+
+    @RequestMapping("/updatePassword")
+    public Boolean updatePassword(@RequestBody Map<String, String> params) {
+        return userService.updatePassword(params);
+    }
 }

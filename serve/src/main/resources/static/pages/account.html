@@ -5,33 +5,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>购物车</title>
+  <title>确认订单</title>
   <link rel="stylesheet" type="text/css" href="../scripts/mui/css/mui.min.css" />
   <link rel="stylesheet" type="text/css" href="../scripts/iconfonts/iconfont.css" />
-  <link rel="stylesheet" type="text/css" href="../styles/shopping.css" />
+  <link rel="stylesheet" type="text/css" href="../styles/account.css" />
 </head>
 
 <body>
   <div class="head">
-    <h1 class="title" id="name">购物车</h1>
+    <i class="iconfont iconfanhui myicon" onclick="javascript:parent.setFrameSrc('./shopping.html')"></i>
+    <h1 class="title" id="name">确认订单</h1>
   </div>
-  <div class="store-address">共<span style="color: red;" id='num'>0</span>样菜，合计<span style="color: red;"
-      id='total'>0</span>元</div>
   <ul class="store-list" id="foodList">
     <!-- <li>
       <img class="left" src="../images/foods/001.png" alt="" srcset="">
-      <div class="middle">
-        <div>银耳羹</div>
-        <div>¥8</div>
-      </div>
+      <div class="middle">银耳羹 * 2</div>
       <div class="right">
-        <i class="iconfont iconjianhao jian"></i>
-        <span class="num">1</span>
-        <i class="iconfont iconjiahao jia"></i>
+        <span class="num">￥100</span>
       </div>
     </li> -->
   </ul>
-  <button type="button" class="mui-btn mui-btn-danger mybtn" onclick="javascript:parent.setFrameSrc('./account.html')">结算</button>
+  <div class="mui-input-row">
+    <label>备注</label>
+    <input type="text" id="beizhu" class="mui-input-clear" placeholder="请输入备注">
+  </div>
+  <div class="store-address">
+    共<span style="color: red;" id='num'>0</span>样菜，合计<span style="color: red;" id='total'>0</span>元
+  </div>
+  <button type="button" class="mui-btn mui-btn-danger mybtn" onclick="gotoPay()">支付</button>
 
   <script src="../scripts/jquery.v1.7.2.js"></script>
   <script src="../scripts/common_utils.js"></script>
@@ -41,18 +42,6 @@
 
     var user = JSON.parse(localStorage.getItem('user'));
     var storeid = localStorage.getItem('storeid');
-
-    function jianShopNum(foodid) {
-      Utils.doAjax('/api/client/jianShopNum', { userid: user.id, storeid: storeid, foodid: foodid }, function (res) {
-        if (res) initCar();
-      })
-    }
-
-    function addToShopCar(foodid) {
-      Utils.doAjax('/api/client/addToShopCar', { userid: user.id, storeid: storeid, foodid: foodid }, function (res) {
-        if (res) initCar();
-      })
-    }
 
     function initCar() {
       Utils.doAjax('/api/client/getShopCarData', { userid: user.id, storeid: storeid }, function (res) {
@@ -66,14 +55,9 @@
               num++;
               str += '<li>' +
                 '<img class="left" src="' + res[i].foodimg + '" alt="" srcset="">' +
-                '<div class="middle">' +
-                '<div>' + res[i].foodname + '</div>' +
-                '<div>¥' + res[i].foodprice + '</div>' +
-                '</div>' +
+                '<div class="middle">' + res[i].foodname + ' * ' + res[i].foodnum + '</div>' +
                 '<div class="right">' +
-                '<i class="iconfont iconjianhao jian" onclick="jianShopNum(\'' + res[i].foodid + '\')"></i>' +
-                '<span class="num">' + res[i].foodnum + '</span>' +
-                '<i class="iconfont iconjiahao jia" onclick="addToShopCar(\'' + res[i].foodid + '\')"></i>' +
+                '<span class="num">￥' + (res[i].foodprice * res[i].foodnum) + '</span>' +
                 '</div>' +
                 '</li>';
             }
@@ -81,6 +65,22 @@
           $("#total").html(total);
           $("#num").html(num);
           $("#foodList").html(str);
+        }
+      })
+    }
+
+    function gotoPay() {
+      mui.confirm('确认下单并支付？', '提示', null, function (e) {
+        if (e.index === 1) {
+          Utils.doAjax('/api/client/payOrder', {
+            userid: user.id,
+            storeid: storeid,
+            money: $("#total").html(),
+            beizhu: $("#beizhu").val()
+          }, function (res) {
+            if (res) parent.setFrameSrc('./paysuccess.html');
+            else mui.toast('支付失败，请联系店家');
+          })
         }
       })
     }

@@ -48,13 +48,9 @@
 
   <div class="store-choose">
     <h1>选择分店</h1>
-    <ul class="fens">
-      <li class="bg1" onclick="javascript:parent.setFrameSrc('./store.html?id=1')"></li>
-      <li class="bg2" onclick="javascript:parent.setFrameSrc('./store.html?id=2')"></li>
-      <li class="bg3" onclick="javascript:parent.setFrameSrc('./store.html?id=3')"></li>
-      <li class="bg4" onclick="javascript:parent.setFrameSrc('./store.html?id=4')"></li>
-      <li class="bg5" onclick="javascript:parent.setFrameSrc('./store.html?id=5')"></li>
-      <li class="bg6" onclick="javascript:parent.setFrameSrc('./store.html?id=6')"></li>
+    <ul class="fens" id="fens">
+      <!-- <li style="background: url(../images/stores/001.png) no-repeat;background-size: 100% 100%;"
+        onclick="javascript:parent.setFrameSrc('./store.html?id=1')"></li> -->
     </ul>
   </div>
 
@@ -69,6 +65,7 @@
         console.log(res)
         if (res) {
           var str = '';
+          var fenstr = '';
           for (var i = 0, len = res.length; i < len; i++) {
             str += '<li class="mui-table-view-cell mui-collapse">' +
               '<a class="mui-navigate-right" href="#">' + res[i].name + '</a>' +
@@ -76,8 +73,10 @@
               '<p>地址：' + res[i].address + '。<br />主推菜：' + res[i].hot_food + '</p>' +
               '</div>' +
               '</li>';
+            fenstr += '<li style="background: url(' + res[i].logo + ') no-repeat;background-size: 100% 100%;" onclick="javascript:parent.setFrameSrc(\'./store.html?id=' + res[i].id + '\')"></li>'
           }
-          $("#storesList").html(str);
+          $("#storesList").html(str); // 这里是店铺列表
+          $("#fens").html(fenstr); // 这里是店铺logo列表
         }
       })
     })
