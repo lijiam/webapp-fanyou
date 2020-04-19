@@ -11,7 +11,7 @@
         select * from user where name = #{name}
     </select>
     <insert id="register" parameterType="java.util.Map">
-        insert into user(name,password,user_type,phone,sex) VALUES (#{name},#{password},#{user_type},#{phone},#{sex})
+        insert into user(name,password,user_type,phone,sex,`like`) VALUES (#{name},#{password},#{user_type},#{phone},#{sex},#{like})
     </insert>
     <update id="updateLoginTime">
         update user set login_time = now() where id = #{id}

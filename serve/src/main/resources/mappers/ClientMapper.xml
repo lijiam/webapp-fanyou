@@ -75,6 +75,7 @@ GROUP BY
 	t1.id orderid,
 	t2.logo logo,
 	t2.`name` storename,
+	t3.`id` ordertypeid,
 	t3.`name` ordertype,
 	t1.money,
 	t1.create_time
@@ -108,5 +109,9 @@ WHERE
 
     <update id="sendOrderPinjia" parameterType="java.util.Map">
         update orders set pingjia = #{pingjia} WHERE id = #{orderid}
+    </update>
+
+    <update id="doExitOrder" parameterType="java.util.Map">
+        update orders set `type` = -1 WHERE id = #{orderid}
     </update>
 </mapper>

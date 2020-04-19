@@ -86,4 +86,9 @@ public class ClientServiceImpl implements ClientService {
     public Boolean sendOrderPinjia(Map<String, String> params) {
         return clientMapper.sendOrderPinjia(params) > 0;
     }
+
+    @Override
+    public Boolean doExitOrder(Map<String, String> params) {
+        return clientMapper.doExitOrder(params) > 0;
+    }
 }

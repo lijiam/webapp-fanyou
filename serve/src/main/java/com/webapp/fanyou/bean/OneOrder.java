@@ -7,6 +7,15 @@ public class OneOrder {
     private String ordertype;
     private String money;
     private String create_time;
+    private String ordertypeid;
+
+    public String getOrdertypeid() {
+        return ordertypeid;
+    }
+
+    public void setOrdertypeid(String ordertypeid) {
+        this.ordertypeid = ordertypeid;
+    }
 
     public String getCreate_time() {
         return create_time;

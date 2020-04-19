@@ -23,4 +23,5 @@ public interface ClientMapper {
     List<OneOrder> getAllOrders(Map<String, String> params);
     List<ShopCar> getOrderDetail(Map<String, String> params);
     int sendOrderPinjia(Map<String, String> params);
+    int doExitOrder(Map<String, String> params);
 }

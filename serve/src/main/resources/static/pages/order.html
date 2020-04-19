@@ -37,11 +37,22 @@
 
     var user = JSON.parse(localStorage.getItem('user'));
 
-    $(function () {
+    function doExitOrder(id) {
+      Utils.doAjax('/api/client/doExitOrder', { orderid: id }, function (res) {
+        if (res) {
+          mui.toast('退单成功');
+          getAllOrders();
+        } else mui.toast('退单失败');
+      })
+    }
+
+    function getAllOrders() {
       Utils.doAjax('/api/client/getAllOrders', { userid: user.id }, function (res) {
         if (res) {
           var str = '';
           for (var i = 0, len = res.length; i < len; i++) {
+            var btnstr = ''
+            if (res[i].ordertypeid === '1') btnstr = '<button type="button" class="mui-btn mui-btn-danger" onclick="doExitOrder(\'' + res[i].orderid + '\')">退单</button>';
             str += '<li>' +
               '<div class="top">' +
               '<img src="' + res[i].logo + '" alt="">' +
@@ -51,12 +62,16 @@
               '</div>' +
               '<div class="order-type">' + res[i].ordertype + '</div>' +
               '</div>' +
-              '<div class="money">￥' + res[i].money + '<button type="button" class="mui-btn mui-btn-primary" onclick="javascript:parent.setFrameSrc(\'./orderdetail.html?orderid=' + res[i].orderid + '\')">查看详情</button></div>' +
+              '<div class="money">￥' + res[i].money + '<button type="button" class="mui-btn mui-btn-primary" onclick="javascript:parent.setFrameSrc(\'./orderdetail.html?orderid=' + res[i].orderid + '\')">查看详情</button>' + btnstr + '</div>' +
               '</li>';
           }
           $("#orderList").html(str);
         }
       })
+    }
+
+    $(function () {
+      getAllOrders();
     })
   </script>
 </body>

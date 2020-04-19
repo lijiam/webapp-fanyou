@@ -18,4 +18,5 @@ public interface ClientService {
     List<OneOrder> getAllOrders(Map<String, String> params);
     List<ShopCar> getOrderDetail(Map<String, String> params);
     Boolean sendOrderPinjia(Map<String, String> params);
+    Boolean doExitOrder(Map<String, String> params);
 }

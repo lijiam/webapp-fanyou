@@ -72,4 +72,9 @@ public class ClientController {
         return clientService.sendOrderPinjia(params);
     }
 
+    @RequestMapping("/doExitOrder")
+    public Boolean doExitOrder(@RequestBody Map<String, String> params) {
+        return clientService.doExitOrder(params);
+    }
+
 }
