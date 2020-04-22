@@ -28,8 +28,8 @@ public class ClientController {
     }
 
     @RequestMapping("/getAllFoods")
-    public List<Food> getAllFoods() {
-        return clientService.getAllFoods();
+    public List<Food> getAllFoods(@RequestBody Map<String, String> params) {
+        return clientService.getAllFoods(params);
     }
 
     @RequestMapping("/newStore")
@@ -76,5 +76,6 @@ public class ClientController {
     public Boolean doExitOrder(@RequestBody Map<String, String> params) {
         return clientService.doExitOrder(params);
     }
+
 
 }

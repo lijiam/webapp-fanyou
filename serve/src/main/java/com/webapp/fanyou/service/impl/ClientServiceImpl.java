@@ -25,8 +25,8 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public List<Food> getAllFoods() {
-        return clientMapper.getAllFoods();
+    public List<Food> getAllFoods(Map<String, String> params) {
+        return clientMapper.getAllFoods(params);
     }
 
     @Override
@@ -66,6 +66,7 @@ public class ClientServiceImpl implements ClientService {
                     map.put("food_number", String.valueOf(shops.get(i).getFoodnum()));
                     list.add(map);
                 }
+                clientMapper.addStoreMoney(params);
                 return clientMapper.addNewOrderDetail(list) > 0;
             } else return false;
         }
@@ -89,6 +90,7 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Boolean doExitOrder(Map<String, String> params) {
+        clientMapper.deleteStoreMoney(params);
         return clientMapper.doExitOrder(params) > 0;
     }
 }

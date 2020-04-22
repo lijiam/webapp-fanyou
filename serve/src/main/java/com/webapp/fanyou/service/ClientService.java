@@ -9,7 +9,7 @@ public interface ClientService {
 
     List<Store> getAllStores();
     Store getStoreById(String id);
-    List<Food> getAllFoods();
+    List<Food> getAllFoods(Map<String, String> params);
     Boolean newStore(Map<String, String> params);
     Boolean addToShopCar(Map<String, String> params);
     Boolean jianShopNum(Map<String, String> params);
@@ -19,4 +19,5 @@ public interface ClientService {
     List<ShopCar> getOrderDetail(Map<String, String> params);
     Boolean sendOrderPinjia(Map<String, String> params);
     Boolean doExitOrder(Map<String, String> params);
+
 }

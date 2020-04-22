@@ -50,7 +50,7 @@
         $("#name").html(res.name);
         $("#address").html(res.address);
       })
-      Utils.doAjax('/api/client/getAllFoods', {}, function (res) {
+      Utils.doAjax('/api/client/getAllFoods', { storeid: storeid }, function (res) {
         if (res) {
           var str = '';
           for (var i = 0, len = res.length; i < len; i++) {

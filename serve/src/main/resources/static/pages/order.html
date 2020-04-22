@@ -37,8 +37,8 @@
 
     var user = JSON.parse(localStorage.getItem('user'));
 
-    function doExitOrder(id) {
-      Utils.doAjax('/api/client/doExitOrder', { orderid: id }, function (res) {
+    function doExitOrder(id, storeid, money) {
+      Utils.doAjax('/api/client/doExitOrder', { orderid: id, storeid: storeid, money: money }, function (res) {
         if (res) {
           mui.toast('退单成功');
           getAllOrders();
@@ -52,7 +52,7 @@
           var str = '';
           for (var i = 0, len = res.length; i < len; i++) {
             var btnstr = ''
-            if (res[i].ordertypeid === '1') btnstr = '<button type="button" class="mui-btn mui-btn-danger" onclick="doExitOrder(\'' + res[i].orderid + '\')">退单</button>';
+            if (res[i].ordertypeid === '1') btnstr = '<button type="button" class="mui-btn mui-btn-danger" onclick="doExitOrder(\'' + res[i].orderid + '\',\'' + res[i].storeid + '\',\'' + res[i].money + '\')">退单</button>';
             str += '<li>' +
               '<div class="top">' +
               '<img src="' + res[i].logo + '" alt="">' +

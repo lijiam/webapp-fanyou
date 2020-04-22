@@ -5,6 +5,7 @@ import com.webapp.fanyou.mapper.BackMapper;
 import com.webapp.fanyou.service.BackService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Map;
@@ -89,5 +90,20 @@ public class BackServiceImpl implements BackService {
     @Override
     public Boolean updateOrderType(Map<String, String> params) {
         return backMapper.updateOrderType(params) > 0;
+    }
+
+    @RequestMapping("/getStoreMoneys")
+    public List<EchartsData> getStoreMoneys() {
+        return backMapper.getStoreMoneys();
+    }
+
+    @RequestMapping("/getFoodSell")
+    public List<EchartsData> getFoodSell() {
+        return backMapper.getFoodSell();
+    }
+
+    @RequestMapping("/getDayCount")
+    public List<EchartsData> getDayCount() {
+        return backMapper.getDayCount();
     }
 }

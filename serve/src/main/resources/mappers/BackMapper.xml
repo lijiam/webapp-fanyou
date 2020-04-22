@@ -82,4 +82,16 @@ t1.id
     <update id="updateOrderType" parameterType="java.util.Map">
         update orders set type = #{type} where id = #{id}
     </update>
+
+    <select id="getStoreMoneys" resultType="com.webapp.fanyou.bean.EchartsData">
+        select `name`,y_money `value` from store where is_check = '1'
+    </select>
+
+    <select id="getFoodSell" resultType="com.webapp.fanyou.bean.EchartsData">
+        select t2.`name`, SUM(t1.food_number) `value` from order_detail t1, food t2 where t1.food_id = t2.id GROUP BY t1.food_id order by `value` desc
+    </select>
+
+    <select id="getDayCount" resultType="com.webapp.fanyou.bean.EchartsData">
+        select count(1) `value`, t1.day `name` from (select DATE_FORMAT(t.create_time,'%Y-%m-%d') `day` from orders t) t1 GROUP BY t1.day order by t1.day
+    </select>
 </mapper>

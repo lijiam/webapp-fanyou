@@ -92,4 +92,18 @@ public class BackController {
         return backService.updateOrderType(params);
     }
 
+    @RequestMapping("/getStoreMoneys")
+    public List<EchartsData> getStoreMoneys() {
+        return backService.getStoreMoneys();
+    }
+
+    @RequestMapping("/getFoodSell")
+    public List<EchartsData> getFoodSell() {
+        return backService.getFoodSell();
+    }
+
+    @RequestMapping("/getDayCount")
+    public List<EchartsData> getDayCount() {
+        return backService.getDayCount();
+    }
 }

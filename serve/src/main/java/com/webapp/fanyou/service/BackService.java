@@ -37,5 +37,9 @@ public interface BackService {
     List<OrderDetail> getOrderById(String id);
 
     Boolean updateOrderType(Map<String, String> params);
+
+    List<EchartsData> getStoreMoneys();
+    List<EchartsData> getFoodSell();
+    List<EchartsData> getDayCount();
 }
 

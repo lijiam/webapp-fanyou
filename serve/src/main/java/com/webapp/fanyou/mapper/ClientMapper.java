@@ -12,7 +12,7 @@ import java.util.Map;
 public interface ClientMapper {
     List<Store> getAllStores();
     Store getStoreById(@Param("id") String id);
-    List<Food> getAllFoods();
+    List<Food> getAllFoods(Map<String, String> params);
     int newStore(Map<String, String> params);
     int addToShopCar(Map<String, String> params);
     int jianShopNum(Map<String, String> params);
@@ -24,4 +24,7 @@ public interface ClientMapper {
     List<ShopCar> getOrderDetail(Map<String, String> params);
     int sendOrderPinjia(Map<String, String> params);
     int doExitOrder(Map<String, String> params);
+    int addStoreMoney(Map<String, String> params);
+    int deleteStoreMoney(Map<String, String> params);
+
 }

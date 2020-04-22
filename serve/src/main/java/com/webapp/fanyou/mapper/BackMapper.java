@@ -40,4 +40,8 @@ public interface BackMapper {
     List<OrderDetail> getOrderById(@Param("id") String id);
 
     int updateOrderType(Map<String, String> params);
+
+    List<EchartsData> getStoreMoneys();
+    List<EchartsData> getFoodSell();
+    List<EchartsData> getDayCount();
 }

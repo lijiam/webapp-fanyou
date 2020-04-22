@@ -3,11 +3,20 @@ package com.webapp.fanyou.bean;
 public class OneOrder {
     private String orderid;
     private String logo;
+    private String storeid;
     private String storename;
     private String ordertype;
     private String money;
     private String create_time;
     private String ordertypeid;
+
+    public String getStoreid() {
+        return storeid;
+    }
+
+    public void setStoreid(String storeid) {
+        this.storeid = storeid;
+    }
 
     public String getOrdertypeid() {
         return ordertypeid;
