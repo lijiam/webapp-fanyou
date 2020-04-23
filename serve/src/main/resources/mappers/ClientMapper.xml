@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.webapp.fanyou.mapper.ClientMapper">
     <select id="getAllStores" resultType="com.webapp.fanyou.bean.Store">
-        select * from store where is_check = '1' order by update_time desc
+        select t3.*,t4.hot_food from store t3, (select GROUP_CONCAT(t2.name) hot_food, t1.storeid from store_hotfood t1, food t2 where t1.foodid = t2.id GROUP BY t1.storeid) t4 where t3.is_check = '1' and t3.id = t4.storeid order by update_time desc
     </select>
     
     <select id="getStoreById" resultType="com.webapp.fanyou.bean.Store">
