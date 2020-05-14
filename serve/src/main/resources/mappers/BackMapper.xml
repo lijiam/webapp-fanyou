@@ -48,7 +48,7 @@ t1.id
     </update>
 
     <select id="getAllStocks" resultType="com.webapp.fanyou.bean.Stock">
-        select t1.*, t2.name dofood_name from stock t1, food t2 where t1.dofood_id = t2.id order by t1.id
+        select t1.* from stock t1 order by t1.id
     </select>
 
     <update id="updateStock" parameterType="java.util.Map">

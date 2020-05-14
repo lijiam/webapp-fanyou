@@ -33,14 +33,14 @@
             data: res
           }
         },
-        limit: 20,
+        limit: 100,
         page: true, //开启分页
         cols: [[ //表头
           { field: 'id', title: '材料编号', sort: true, fixed: 'left', width: 120, align: 'center', style: 'text-align:center' },
           { field: 'name', title: '材料名称', edit: 'text' },
           { field: 'number', title: '库存数量', sort: true, edit: 'text' },
-          { field: 'dofood_id', title: '供应菜品编号', sort: true },
-          { field: 'dofood_name', title: '供应菜品名称', sort: true },
+          { field: 'comp', title: '单位' },
+          { field: 'price', title: '单价', sort: true },
           { field: 'is_in', title: '是否进货', sort: true, edit: 'text' },
         ]],
         even: true,

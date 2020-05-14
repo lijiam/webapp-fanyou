@@ -6,7 +6,25 @@ public class Stock {
     private String number;
     private String dofood_id;
     private String dofood_name;
+    private String comp;
+    private String price;
     private String is_in;
+
+    public String getComp() {
+        return comp;
+    }
+
+    public void setComp(String comp) {
+        this.comp = comp;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
 
     public String getId() {
         return id;
