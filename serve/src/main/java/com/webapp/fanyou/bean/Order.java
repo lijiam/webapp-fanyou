@@ -7,12 +7,21 @@ public class Order {
     private String order_type_name;
     private String user_id;
     private String storeid;
+    private String storename;
     private String user_name;
     private String money;
     private String discount_money;
     private String create_time;
     private String pingjia;
     private String beizhu;
+
+    public String getStorename() {
+        return storename;
+    }
+
+    public void setStorename(String storename) {
+        this.storename = storename;
+    }
 
     public String getStoreid() {
         return storeid;

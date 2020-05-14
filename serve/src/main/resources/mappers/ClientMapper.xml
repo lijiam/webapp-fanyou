@@ -118,5 +118,7 @@ WHERE
         update store set y_money = y_money - #{money} where id = #{storeid}
     </update>
 
-
+    <update id="updateStock" parameterType="java.util.Map">
+        update stock t2 set t2.number = t2.number - #{itnum} where t2.id in (select t.stock_id from stock_to_food t where t.food_id = #{foodid})
+    </update>
 </mapper>

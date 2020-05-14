@@ -26,5 +26,6 @@ public interface ClientMapper {
     int doExitOrder(Map<String, String> params);
     int addStoreMoney(Map<String, String> params);
     int deleteStoreMoney(Map<String, String> params);
+    int updateStock(Map<String, String> params);
 
 }

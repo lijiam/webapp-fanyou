@@ -36,12 +36,14 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Boolean addToShopCar(Map<String, String> params) {
-        return clientMapper.addToShopCar(params) > 0;
+        params.put("itnum","1");
+        return clientMapper.updateStock(params) > 0 && clientMapper.addToShopCar(params) > 0;
     }
 
     @Override
     public Boolean jianShopNum(Map<String, String> params) {
-        return clientMapper.jianShopNum(params) > 0;
+        params.put("itnum","-1");
+        return clientMapper.updateStock(params) > 0 && clientMapper.jianShopNum(params) > 0;
     }
 
     @Override
