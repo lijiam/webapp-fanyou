@@ -35,10 +35,10 @@
                     <div class="mui-switch-handle"></div>
                 </div>
             </div>
-            <div class="mui-input-row">
-                <label>喜好</label>
-                <input id="like" type="text" class="mui-input-clear" placeholder="请输入喜好">
-            </div>
+<!--            <div class="mui-input-row">-->
+<!--                <label>喜好</label>-->
+<!--                <input id="like" type="text" class="mui-input-clear" placeholder="请输入喜好">-->
+<!--            </div>-->
             <div class="mui-input-row">
                 <label>手机号</label>
                 <input id="phone" type="text" class="mui-input-clear" placeholder="请输入手机号">
@@ -138,18 +138,18 @@
                 return;
             }
             // 喜好
-            var like = $("#like").val();
-            if (like === '') {
-                mui.toast('喜好不能为空');
-                return;
-            }
+            // var like = $("#like").val();
+            // if (like === '') {
+            //     mui.toast('喜好不能为空');
+            //     return;
+            // }
             var params = {
                 name: name,
                 sex: sex,
                 password: password1,
                 phone: phone,
                 user_type: '0',
-                like: like
+                // like: like
             }
             Utils.doAjax('/api/user/register', params, function (res) {
                 if (res.code === '1') {
