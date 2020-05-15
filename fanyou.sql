@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 14/05/2020 22:58:38
+ Date: 15/05/2020 19:15:02
 */
 
 SET NAMES utf8mb4;
@@ -158,28 +158,28 @@ CREATE TABLE `stock`  (
 -- ----------------------------
 -- Records of stock
 -- ----------------------------
-INSERT INTO `stock` VALUES (1, '大米', 5, '斤', 10, '0');
-INSERT INTO `stock` VALUES (2, '南瓜', 8, '斤', 5, '0');
-INSERT INTO `stock` VALUES (3, '红薯', 98, '斤', 3, '0');
+INSERT INTO `stock` VALUES (1, '大米', 499, '份', 10, '0');
+INSERT INTO `stock` VALUES (2, '南瓜', 8, '份', 5, '0');
+INSERT INTO `stock` VALUES (3, '红薯', 98, '份', 3, '0');
 INSERT INTO `stock` VALUES (4, '皮蛋', 100, '个', 1, '0');
-INSERT INTO `stock` VALUES (5, '排骨', 150, '斤', 30, '0');
-INSERT INTO `stock` VALUES (6, '猪肉', 50, '斤', 25, '0');
+INSERT INTO `stock` VALUES (5, '排骨', 150, '份', 30, '0');
+INSERT INTO `stock` VALUES (6, '猪肉', 50, '份', 25, '0');
 INSERT INTO `stock` VALUES (7, '香肠', 100, '罐', 50, '0');
-INSERT INTO `stock` VALUES (8, '番茄', 9, '斤', 12, '0');
+INSERT INTO `stock` VALUES (8, '番茄', 9, '份', 12, '0');
 INSERT INTO `stock` VALUES (9, '鸡蛋', 199, '个', 1, '0');
-INSERT INTO `stock` VALUES (10, '金针菇', 9, '斤', 14, '0');
-INSERT INTO `stock` VALUES (11, '虾', 10, '斤', 30, '0');
-INSERT INTO `stock` VALUES (12, '扇贝', 20, '斤', 35, '0');
-INSERT INTO `stock` VALUES (13, '青菜', 10, '斤', 5, '0');
+INSERT INTO `stock` VALUES (10, '金针菇', 9, '份', 14, '0');
+INSERT INTO `stock` VALUES (11, '虾', 10, '份', 30, '0');
+INSERT INTO `stock` VALUES (12, '扇贝', 20, '份', 35, '0');
+INSERT INTO `stock` VALUES (13, '青菜', 10, '份', 5, '0');
 INSERT INTO `stock` VALUES (14, '蜜制酱', 5, '罐', 10, '0');
-INSERT INTO `stock` VALUES (15, '银耳', 10, '斤', 12, '0');
-INSERT INTO `stock` VALUES (16, '枸杞', 10, '斤', 15, '0');
-INSERT INTO `stock` VALUES (17, '冰淇淋', 10, '桶', 100, '0');
-INSERT INTO `stock` VALUES (18, '苹果', 10, '斤', 20, '0');
-INSERT INTO `stock` VALUES (19, '圣女果', 10, '斤', 30, '0');
+INSERT INTO `stock` VALUES (15, '银耳', 10, '份', 12, '0');
+INSERT INTO `stock` VALUES (16, '枸杞', 10, '份', 15, '0');
+INSERT INTO `stock` VALUES (17, '冰淇淋', 9, '桶', 100, '0');
+INSERT INTO `stock` VALUES (18, '苹果', 10, '份', 20, '0');
+INSERT INTO `stock` VALUES (19, '圣女果', 10, '份', 30, '0');
 INSERT INTO `stock` VALUES (20, '沙拉酱', 10, '罐', 50, '0');
-INSERT INTO `stock` VALUES (21, '橙子', 20, '斤', 15, '0');
-INSERT INTO `stock` VALUES (22, '西瓜', 5, '斤', 10, '0');
+INSERT INTO `stock` VALUES (21, '橙子', 20, '份', 15, '0');
+INSERT INTO `stock` VALUES (22, '西瓜', 5, '份', 10, '0');
 INSERT INTO `stock` VALUES (23, '可乐', 50, '瓶', 15, '0');
 INSERT INTO `stock` VALUES (24, '酸梅汁', 10, '瓶', 10, '0');
 
@@ -268,7 +268,7 @@ INSERT INTO `store` VALUES (2, '嘉兴分店', '../images/stores/002.png', '浙�
 INSERT INTO `store` VALUES (3, '宁波分店', '../images/stores/003.png', '浙江省宁波市象山市金都街道37号', 0, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2020-04-10 08:45:29', '2020-04-10 08:45:29', '2020-04-10 08:45:29');
 INSERT INTO `store` VALUES (4, '绍兴分店', '../images/stores/004.png', '浙江省绍兴市柯桥区万达金街29号', 0, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2020-04-10 08:45:31', '2020-04-10 08:45:31', '2020-04-10 08:45:31');
 INSERT INTO `store` VALUES (5, '金华分店', '../images/stores/005.png', '浙江省金华市婺城区贤才街道63号', 0, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2020-04-10 08:45:33', '2020-04-10 08:45:33', '2020-04-10 08:45:33');
-INSERT INTO `store` VALUES (6, '温州分店', '../images/stores/006.png', '浙江省温州市鹿城区阳光街道12号', 32, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2020-04-10 08:45:34', '2020-04-10 08:45:34', '2020-04-19 11:26:39');
+INSERT INTO `store` VALUES (6, '温州分店', '../images/stores/006.png', '浙江省温州市鹿城区阳光街道12号', 41, NULL, NULL, NULL, NULL, NULL, NULL, '1', '2020-04-10 08:45:34', '2020-04-10 08:45:34', '2020-04-19 11:26:39');
 
 -- ----------------------------
 -- Table structure for store_hotfood
